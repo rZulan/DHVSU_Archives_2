@@ -20,7 +20,9 @@ class GoogleAuthView(APIView):
                 user.email = decoded.get('email')
                 user.save()
 
-            return Response({'message': 'User authenticated successfully'})
+            payload = {'user_id': user.id}  # You can include any additional information in the payload
+            jwt_token = jwt.encode(payload, 'your_secret_key', algorithm='HS256')  # 'your_secret_key' should be a secret key
+            return Response({'token': jwt_token})
 
         except (jwt.InvalidTokenError, ValueError) as e:
             return Response({'error': 'Authentication failed'}, status=401)
