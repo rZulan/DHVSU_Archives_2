@@ -16,7 +16,7 @@ function App() {
     console.log('Encoded JWT:', response.credential);
   
     const csrftoken = getCookie('csrftoken');
-    axios.post('http://127.0.0.1:8000/google-auth/', {
+    axios.post('http://127.0.0.1:8000/authme/', {
       id_token: response.credential,
     }, {
       headers: {

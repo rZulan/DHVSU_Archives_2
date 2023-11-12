@@ -1,26 +1,32 @@
-from google.auth.transport import requests
-from google.oauth2 import id_token
+import jwt
+import requests
 from django.contrib.auth.models import User
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
-def authenticate_user(id_token):
+@csrf_exempt
+def authenticate_user(request):
+    id_token = request.POST.get('id_token')  # Assuming the ID token is sent via POST request
+
     try:
         # Specify your Google Client ID
-        CLIENT_ID = "your_client_id_here"  # Replace with your actual Google Client ID
+        CLIENT_ID = "632832146913-kj0cd29v9j9a16fn39mb9ioirfq5438r.apps.googleusercontent.com"  # Replace with your actual Google Client ID
 
-        # Verifying the token using google-auth library
-        idinfo = id_token.verify_oauth2_token(id_token, requests.Request(), CLIENT_ID)
+        # Verify and decode the ID token
+        decoded = jwt.decode(id_token, options={"verify_signature": False})
 
-        if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
-            raise ValueError('Wrong issuer.')
+        if decoded['aud'] != CLIENT_ID:
+            return JsonResponse({'error': 'Invalid client ID'}, status=401)
 
         # Fetch necessary user data or create a user if it doesn't exist
-        user, created = User.objects.get_or_create(username=idinfo['email'])
+        user, created = User.objects.get_or_create(username=decoded.get('email'))
         if created:
             # Additional user profile data can be updated here
-            user.email = idinfo['email']
+            user.email = decoded.get('email')
             user.save()
 
-        return user
-    except ValueError as e:
-        print(str(e))  # Log the error or handle it as required
-        return None
+        # Return a success response or user data
+        return JsonResponse({'message': 'User authenticated successfully'})
+
+    except (jwt.InvalidTokenError, ValueError) as e:
+        return JsonResponse({'error': 'Authentication failed'}, status=401)

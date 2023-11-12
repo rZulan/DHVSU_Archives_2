@@ -16,9 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from . views import google_auth
+from . views import authenticate_user
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('google-auth/', google_auth, name='google-auth'),
+    path('authme/', authenticate_user)
 ]
