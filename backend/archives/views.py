@@ -24,3 +24,4 @@ class GoogleAuthView(APIView):
 
         except (jwt.InvalidTokenError, ValueError) as e:
             return Response({'error': 'Authentication failed'}, status=401)
+
