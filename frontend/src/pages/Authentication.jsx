@@ -51,8 +51,9 @@ class Authentication extends Component {
   }
 
   handleRegisterSubmit(event) {
+    const { registerUser } = this.context;
+    registerUser(event);
     event.preventDefault();
-    this.setState({ redirectToHome: true });
   }
 
 
