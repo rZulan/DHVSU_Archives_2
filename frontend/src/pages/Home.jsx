@@ -8,22 +8,22 @@ const Home = () => {
   const dummyFeaturedDocuments = [
     {
       title: "Document 1",
-      abstract: "This is the abstract for Document 1. lorem aoihfui aehi qau hywu heajkh iwehf uaehw as fjkawh jw3qht ujw3gh jhu whtu whujt hajk klhwtea houji",
+      abstract: "Date Publish: 2023 Course: BSCS.",
       documentLink: "https://www.example.com/document1",
     },
     {
       title: "Document 2",
-      abstract: "This is the abstract for Document 2.",
+      abstract: "Date Publish: 2023 Course: BSCS.",
       documentLink: "https://www.example.com/document2",
     },
     {
       title: "Document 2",
-      abstract: "This is the abstract for Document 2.",
+      abstract: "Date Publish: 2023 Course: BSCS.",
       documentLink: "https://www.example.com/document2",
     },
     {
       title: "Document 2",
-      abstract: "This is the abstract for Document 2.",
+      abstract: "Date Publish: 2023 Course: BSCS.",
       documentLink: "https://www.example.com/document2",
     },
     // ... add more dummy documents
@@ -106,6 +106,7 @@ const Home = () => {
   ];
   
   return (
+    <div className ="main-body">
     <div className="max-w-7xl mx-auto p-8">
       <div className="text-center mb-20">
         <h1 className="text-4xl font-bold mb-4">{brand}</h1>
@@ -120,13 +121,13 @@ const Home = () => {
             placeholder="Search..."
             className="border border-gray-300 rounded-l px-4 py-2 outline-none w-80"
           />
-          <button className="bg-blue-500 text-white rounded-r px-4 py-2 ml-2">
+          <button className="bg-[#600414] text-white rounded-r px-4 py-2 ml-2">
             Search
           </button>
         </div>
 
         {/* Submit a document button */}
-        <button className="bg-green-500 text-white rounded px-4 py-2 mb-32">
+        <button className="bg-[#600414] text-white rounded px-4 py-2 mb-32">
           Submit a Document
         </button>
       </div>
@@ -136,13 +137,13 @@ const Home = () => {
         <h2 className="text-2xl font-bold mb-4">Featured Documents</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {dummyFeaturedDocuments.map((doc, index) => (
-            <div key={index} className="bg-slate-300 rounded-lg shadow-md transform transition-all duration-300 hover:scale-105">
-              <div className="p-4 flex flex-col h-full justify-between">
-                <div>
-                  <h3 className="text-lg font-bold mb-2">{doc.title}</h3>
-                  <p className="mb-4 flex-1">{doc.abstract}</p>
+            <div key={index} className="card">
+              <div className="content">
+                <div className="h6">Data & Infrastructure Agility</div>
+                <div className="hover_content">
+                  <p>{doc.abstract}</p>
                 </div>
-                <a href={doc.documentLink} className="bg-blue-500 text-white rounded-b px-4 py-2 block text-center">
+                <a href={doc.documentLink} className="bg-[#fbbf24] mt-4 mb-0 text-white rounded-md px-4 py-2 block text-center">
                   View Document
                 </a>
               </div>
@@ -161,7 +162,7 @@ const Home = () => {
               <div key={docIndex} className="bg-white rounded-lg shadow-md p-4">
                 <h4 className="text-lg font-bold mb-2">{document.title}</h4>
                 <p>{document.abstract}</p>
-                <a href={document.link} className="bg-blue-500 text-white rounded px-4 py-2 block text-center mt-2">
+                <a href={document.link} className="bg-[#fbbf24] text-white rounded px-4 py-2 block text-center mt-2">
                   View Document
                 </a>
               </div>
@@ -170,6 +171,7 @@ const Home = () => {
         </div>
       ))}
     </section>
+    </div>
     </div>
   );
 };
