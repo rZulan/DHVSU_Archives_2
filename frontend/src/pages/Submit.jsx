@@ -66,7 +66,7 @@ const Submit = () => {
   }
 
   return (
-    <div className ="main-body">
+    <div className ="main-body bg-[#F6F6F6]">
     <div className="min-h-screen">
       <h1 className="text-3xl font-bold text-center my-4">Submit a Document</h1>
       <div className="container mx-auto px-4 py-8">

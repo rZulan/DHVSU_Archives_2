@@ -13,96 +13,77 @@
 .card {
   position: relative;
   display: flex;
+  align-items: center;
   justify-content: center;
-  cursor: pointer;
-  width: 22em;
-  max-width: 80%;
-  padding: 2em 0;
-  background: #FFF;
-  box-shadow: 0 0 6px 0 rgba(32, 32, 36, 0.12);
-  transition: all 0.35s ease;
-  overflow: hidden; /* Add this line to hide overflow content */
+  width: 320px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  padding: 32px;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
 }
 
-.card::before, .card::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: orange;
-  height: 4px;
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  color: #1F1D1B;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.content .heading {
+  font-weight: 700;
+  font-size: 32px;
+}
+
+.content .para {
+  line-height: 1.5;
+}
+
+.content .btn {
+  color: #1F1D1B;
+  text-decoration: none;
+  padding: 10px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(-45deg, #f89b29 0%, #ff0f7b 100% );
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .card::before {
-  width: 0;
-  opacity: 0;
-  transition: opacity 0 ease, width 0 ease;
-  transition-delay: 0.5s;
-}
-
-.card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
   width: 100%;
-  background: white;
-  transition: width 0.5s ease;
-}
-
-.card .content {
-  width: 18em;
-  max-width: 80%;
-}
-
-.card .logo {
-  margin: 0 0 1em;
-  width: 10.625em;
-  transition: all 0.35s ease;
-}
-
-.card .h6 {
-  color: #999;
-  font-weight: 600;
-  text-transform: uppercase;
-  margin: 0;
-  letter-spacing: 2px;
-}
-
-.card .hover_content {
-  overflow: hidden;
-  max-height: 0;
-  transform: translateY(1em);
-  transition: all 0.55s ease;
-}
-
-.card .hover_content p {
-  margin: 1.5em 0 0;
-  color: #6E6E70;
-  line-height: 1.4em;
-}
-
-/* Add hover effect */
-.card:hover {
-  width: 24em;
-  box-shadow: 0 10px 20px 0 rgba(32, 32, 36, 0.12);
+  height: 5px;
+  background: linear-gradient(-45deg, #f89b29 0%, #ff0f7b 100% );
+  z-index: -1;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
 }
 
 .card:hover::before {
-  width: 100%;
-  opacity: 1;
-  transition: opacity 0.5s ease, width 0.5s ease;
-  transition-delay: 0;
+  height: 100%;
 }
 
-.card:hover::after {
-  width: 0;
-  opacity: 0;
-  transition: width 0 ease;
+.card:hover {
+  box-shadow: none;
 }
 
-.card:hover .logo {
-  margin-bottom: 0.5em;
+.card:hover .btn {
+  color: #212121;
+  background: #e8e8e8;
 }
 
-.card:hover .hover_content {
-  max-height: 10em;
-  transform: none;
+.content .btn:hover {
+  outline: 2px solid #e8e8e8;
+  background: transparent;
+  color: #1F1D1B;
+}
+
+.content .btn:active {
+  box-shadow: none;
 }

@@ -33,11 +33,11 @@ const Library = () => {
   };
 
   return (
-    <div className="main-body  p-7">
+    <div className="main-body bg-[#F6F6F6] p-7">
 
       <div className="flex flex-wrap -mx-4">
 
-        <div className="w-full md:w-1/4 p-4 rounded-md shadow-lg">
+        <div className="w-full md:w-1/4 p-4 rounded-md shadow-lg bg-white">
           <h2 className="text-2xl font-bold mb-6">Filter</h2>
           <div className="mb-4">
             <h3 className="font-semibold">Document Type:</h3>
