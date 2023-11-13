@@ -62,14 +62,14 @@ const Header = () => {
         <Link to="/" className="nav-link">
           Home
         </Link>
-        <Link to="/admin" className="nav-link">
-          Featured
+        <Link to="/submit" className="nav-link">
+          Upload
         </Link>
         <Link to="/library" className="nav-link">
-          Library
+          Browse
         </Link>
         <Link to="/admin" className="nav-link">
-          Admin
+          Profile
         </Link>
         {user && <p onClick={logoutUser} className="nav-link logout-link hover:cursor-pointer">Logout</p>}
       </nav>

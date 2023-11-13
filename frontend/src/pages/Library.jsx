@@ -29,22 +29,16 @@ const Library = () => {
   };
 
   const handleFilterClick = () => {
-    // handle filter logic here
+
   };
 
   return (
-    <div className="main-body">
-      <div className="w-full mb-4">
-        <input
-          type="text"
-          placeholder="Search..."
-          className="w-full p-2 border rounded"
-        />
-      </div>
+    <div className="main-body bg-[#F6F6F6] p-7">
 
-      <div className="flex">
-        <div className="w-1/4 p-4">
-          <h2 className="text-xl font-bold mb-4">Filter</h2>
+      <div className="flex flex-wrap -mx-4">
+
+        <div className="w-full md:w-1/4 p-4 rounded-md shadow-lg bg-white">
+          <h2 className="text-2xl font-bold mb-6">Filter</h2>
           <div className="mb-4">
             <h3 className="font-semibold">Document Type:</h3>
             <label className="block">
@@ -120,53 +114,121 @@ const Library = () => {
           </div>
           <button
             onClick={handleFilterClick}
-            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+            className="w-full bg-[#600414] text-white py-3 px-6 rounded hover:bg-[#40030d] transition duration-300"
           >
             Filter
           </button>
         </div>
-        <div className="w-3/4 p-4">
-          <h2 className="text-xl font-bold mb-4">Example Document</h2>
-          <h3 className="font-semibold">Document Title</h3>
-          <p>Author: John Doe</p>
-          <p>Year: 2023</p>
-          <p>
-            Abstract: This is a sample document abstract. It can contain a brief
-            description of the document's content.
-          </p>
-          <p>Department: Computer Science</p>
-          <p>Courses: BSCS</p>
+
+        <div className="w-full md:w-3/4 p-4">
+
+          <div className="">
+            <input
+              type="text"
+              placeholder="Search Document"
+              className="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#600414] transition duration-300"
+            />
+          </div>
+          
+          <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold mb-2">Document Title</h3>
+            <p className="text-gray-700">
+              Abstract: This is a sample document abstract. It can contain a brief
+              description of the document's content.
+            </p>
+            <div className="border-t-2 border-gray-300 my-4"></div>
+            <p className="text-gray-700">Author: John Doe</p>
+            <p className="text-gray-700">Year: 2023</p>
+            <p className="text-gray-700">Department: Computer Science</p>
+            <p className="text-gray-700">Courses: BSCS</p>
+          </div>
+
+          <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold mb-2">Document Title</h3>
+            <p className="text-gray-700">
+              Abstract: This is a sample document abstract. It can contain a brief
+              description of the document's content.
+            </p>
+            <div className="border-t-2 border-gray-300 my-4"></div>
+            <p className="text-gray-700">Author: John Doe</p>
+            <p className="text-gray-700">Year: 2023</p>
+            <p className="text-gray-700">Department: Computer Science</p>
+            <p className="text-gray-700">Courses: BSCS</p>
+          </div>
+
+          <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold mb-2">Document Title</h3>
+            <p className="text-gray-700">
+              Abstract: This is a sample document abstract. It can contain a brief
+              description of the document's content.
+            </p>
+            <div className="border-t-2 border-gray-300 my-4"></div>
+            <p className="text-gray-700">Author: John Doe</p>
+            <p className="text-gray-700">Year: 2023</p>
+            <p className="text-gray-700">Department: Computer Science</p>
+            <p className="text-gray-700">Courses: BSCS</p>
+          </div>
+
+          <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold mb-2">Document Title</h3>
+            <p className="text-gray-700">
+              Abstract: This is a sample document abstract. It can contain a brief
+              description of the document's content.
+            </p>
+            <div className="border-t-2 border-gray-300 my-4"></div>
+            <p className="text-gray-700">Author: John Doe</p>
+            <p className="text-gray-700">Year: 2023</p>
+            <p className="text-gray-700">Department: Computer Science</p>
+            <p className="text-gray-700">Courses: BSCS</p>
+          </div>
+
+          <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold mb-2">Document Title</h3>
+            <p className="text-gray-700">
+              Abstract: This is a sample document abstract. It can contain a brief
+              description of the document's content.
+            </p>
+            <div className="border-t-2 border-gray-300 my-4"></div>
+            <p className="text-gray-700">Author: John Doe</p>
+            <p className="text-gray-700">Year: 2023</p>
+            <p className="text-gray-700">Department: Computer Science</p>
+            <p className="text-gray-700">Courses: BSCS</p>
+          </div>
+
         </div>
+
       </div>
-      <div className="mt-4 flex justify-center">
+
+      <div className="mt-6 flex justify-center">
         <ul className="flex space-x-2">
           <li>
-            <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+            <button className="bg-[#600414] text-white py-2 px-4 rounded hover:bg-[#40030d]">
               Previous
             </button>
           </li>
           <li>
-            <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+          <button className="bg-[#600414] text-white py-2 px-4 rounded hover:bg-[#40030d]">
               1
             </button>
           </li>
           <li>
-            <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+          <button className="bg-[#600414] text-white py-2 px-4 rounded hover:bg-[#40030d]">
               2
             </button>
           </li>
           <li>
-            <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+          <button className="bg-[#600414] text-white py-2 px-4 rounded hover:bg-[#40030d]">
               3
             </button>
           </li>
           <li>
-            <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+          <button className="bg-[#600414] text-white py-2 px-4 rounded hover:bg-[#40030d]">
               Next
             </button>
           </li>
         </ul>
       </div>
+
     </div>
   );
 };

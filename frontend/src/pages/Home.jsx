@@ -106,7 +106,7 @@ const Home = () => {
   ];
   
   return (
-    <div className ="main-body">
+    <div className ="main-body bg-[#F6F6F6]">
     <div className="max-w-7xl mx-auto p-8">
       <div className="text-center mb-20">
         <h1 className="text-4xl font-bold mb-4">{brand}</h1>
@@ -119,15 +119,15 @@ const Home = () => {
           <input
             type="text"
             placeholder="Search..."
-            className="border border-gray-300 rounded-l px-4 py-2 outline-none w-80"
+            className="border border-gray-300 rounded-md px-4 py-2 outline-none w-96"
           />
-          <button className="bg-[#600414] text-white rounded-r px-4 py-2 ml-2">
+          <button className="bg-[#600414] text-white rounded-md px-4 py-2 ml-2">
             Search
           </button>
         </div>
 
         {/* Submit a document button */}
-        <button className="bg-[#600414] text-white rounded px-4 py-2 mb-32">
+        <button className="bg-[#600414] text-white rounded-md px-4 py-2 mb-32">
           Submit a Document
         </button>
       </div>
@@ -136,21 +136,20 @@ const Home = () => {
       <section className="mb-36">
         <h2 className="text-2xl font-bold mb-4">Featured Documents</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {dummyFeaturedDocuments.map((doc, index) => (
-            <div key={index} className="card">
-              <div className="content">
-                <div className="h6">Data & Infrastructure Agility</div>
-                <div className="hover_content">
-                  <p>{doc.abstract}</p>
-                </div>
-                <a href={doc.documentLink} className="bg-[#fbbf24] mt-4 mb-0 text-white rounded-md px-4 py-2 block text-center">
-                  View Document
-                </a>
-              </div>
-            </div>
-          ))}
+        <div class="card">
+          <div class="content">
+            <p class="heading">Card Hover Effect
+            </p><p class="para">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi
+              laboriosam at voluptas minus culpa deserunt delectus sapiente
+              inventore pariatur
+            </p>
+            <button class="btn">Read more</button>
+          </div>
+        </div>
         </div>
       </section>
+
 
       {/* Submitted Documents by Department */}
       <section>

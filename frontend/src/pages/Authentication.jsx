@@ -63,7 +63,7 @@ class Authentication extends Component {
     }
 
     return (
-      <div className="flex justify-center items-center h-screen bg-gray-100">
+      <div className="flex justify-center items-center h-screen bg-[#F6F6F6]">
         <div className="w-full max-w-4xl flex">
           <div className="w-1/2 p-4 flex flex-col justify-between">
             <div className="bg-blue-200 rounded-lg p-4 mb-4 flex-1">
