@@ -6,6 +6,7 @@ import Library from './pages/Library';
 import Admin from './pages/Admin';
 import DefaultPage from './utils/DefaultPage';
 import Authentication from './pages/Authentication';
+import { AuthProvider } from './context/AuthContext';
 
 const isAuthenticated = false;
 const isAdmin = true;
@@ -13,18 +14,20 @@ const isAdmin = true;
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path='/login' element={<Authentication />} exact/>
-        <Route element={<DefaultPage />}>
-          <Route path='/' element={<Home />}/>
-          <Route path='/library' element={<Library />} exact/>
-        </Route>
+      <AuthProvider>
+        <Routes>
+          <Route path='/login' element={<Authentication />} exact/>
+          <Route element={<DefaultPage />}>
+            <Route path='/' element={<Home />}/>
+            <Route path='/library' element={<Library />} exact/>
+          </Route>
 
-        <Route element={<PrivateRoutes />}>
-          <Route path='/admin' element={<Admin />} exact/>
-        </Route>
-        
-      </Routes>
+          <Route element={<PrivateRoutes />}>
+            <Route path='/admin' element={<Admin />} exact/>
+          </Route>
+          
+        </Routes>
+      </AuthProvider>
     </Router>
   );
 }
