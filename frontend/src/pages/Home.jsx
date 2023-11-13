@@ -119,7 +119,7 @@ const Home = () => {
           <input
             type="text"
             placeholder="Search..."
-            className="border border-gray-300 rounded-l px-4 py-2 outline-none w-80"
+            className="border border-gray-300rounded-l px-4 py-2 outline-none w-96"
           />
           <button className="bg-[#600414] text-white rounded-r px-4 py-2 ml-2">
             Search

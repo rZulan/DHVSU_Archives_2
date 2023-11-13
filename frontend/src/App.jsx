@@ -7,6 +7,7 @@ import Admin from './pages/Admin';
 import DefaultPage from './utils/DefaultPage';
 import Authentication from './pages/Authentication';
 import { AuthProvider } from './context/AuthContext';
+import Submit from './pages/Submit';
 
 const isAuthenticated = false;
 const isAdmin = true;
@@ -20,6 +21,7 @@ function App() {
           <Route element={<DefaultPage />}>
             <Route path='/' element={<Home />}/>
             <Route path='/library' element={<Library />} exact/>
+            <Route path='/submit' element={<Submit />}/>
           </Route>
 
           <Route element={<PrivateRoutes />}>
