@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Navigate } from 'react-router-dom';
+import AuthContext from '../context/AuthContext';
 
 class Authentication extends Component {
+  static contextType = AuthContext;
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -42,16 +45,13 @@ class Authentication extends Component {
   }
 
   handleLoginSubmit(event) {
-    console.log('Login Data:', this.state.loginData);
+    const { loginUser } = this.context;
+    loginUser(event);
     event.preventDefault();
-    // Redirect to home after login
-    this.setState({ redirectToHome: true });
   }
 
   handleRegisterSubmit(event) {
-    console.log('Register Data:', this.state.registerData);
     event.preventDefault();
-    // Redirect to home after registration
     this.setState({ redirectToHome: true });
   }
 

@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/header.css';
+import AuthContext from '../context/AuthContext';
 
 const Header = () => {
+  let {user, logoutUser} = useContext(AuthContext)
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
@@ -43,6 +45,8 @@ const Header = () => {
     >
       <div className="header-content">
         <h1 className="logo">DHVSU Archives</h1>
+        
+        {user && <p className='ml-8'>Welcome <u>{user.username}</u></p>}
         <button
           className={`mobile-menu-toggle ${isMobileMenuOpen ? 'open' : ''}`}
           onClick={toggleMobileMenu}
@@ -64,9 +68,7 @@ const Header = () => {
         <Link to="/admin" className="nav-link">
           Admin
         </Link>
-        <Link to="/logout" className="nav-link logout-link">
-          Logout
-        </Link>
+        {user && <p onClick={logoutUser} className="nav-link logout-link hover:cursor-pointer">Logout</p>}
       </nav>
     </header>
   );
