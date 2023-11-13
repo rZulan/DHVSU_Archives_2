@@ -8,22 +8,22 @@ const Home = () => {
   const dummyFeaturedDocuments = [
     {
       title: "Document 1",
-      abstract: "Date Publish: 2023 Course: BSCS.",
+      abstract: "Date Publish: 2023 Course: BSCS",
       documentLink: "https://www.example.com/document1",
     },
     {
       title: "Document 2",
-      abstract: "Date Publish: 2023 Course: BSCS.",
+      abstract: "Date Publish: 2023 Course: BSCS",
       documentLink: "https://www.example.com/document2",
     },
     {
       title: "Document 2",
-      abstract: "Date Publish: 2023 Course: BSCS.",
+      abstract: "Date Publish: 2023 Course: BSCS",
       documentLink: "https://www.example.com/document2",
     },
     {
       title: "Document 2",
-      abstract: "Date Publish: 2023 Course: BSCS.",
+      abstract: "Date Publish: 2023 Course: BSCS",
       documentLink: "https://www.example.com/document2",
     },
     // ... add more dummy documents
