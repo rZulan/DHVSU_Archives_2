@@ -136,15 +136,15 @@ const Home = () => {
       <section className="mb-36">
         <h2 className="text-2xl font-bold mb-4">Featured Documents</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="card">
-          <div class="content">
-            <p class="heading">Card Hover Effect
-            </p><p class="para">
+        <div className="card">
+          <div className="content">
+            <p className="heading">Card Hover Effect
+            </p><p className="para">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi
               laboriosam at voluptas minus culpa deserunt delectus sapiente
               inventore pariatur
             </p>
-            <button class="btn">Read more</button>
+            <button className="btn">Read more</button>
           </div>
         </div>
         </div>
