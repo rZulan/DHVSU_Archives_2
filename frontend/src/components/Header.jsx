@@ -5,7 +5,7 @@ import '../css/header.css';
 import logo from '../assets/logo.png';
 
 const Header = () => {
-  let {user, logoutUser} = useContext(AuthContext)
+  let { user, logoutUser } = useContext(AuthContext)
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
@@ -49,7 +49,7 @@ const Header = () => {
           <img src={logo} alt="DHVSU Archives Logo" className="logo-image" />
           <span className="logo-text"><strong>ARCHIVES</strong></span>
         </div>
-        
+
         {user && <p className='ml-8'>Welcome <u>{user.username}</u></p>}
         <button
           className={`mobile-menu-toggle ${isMobileMenuOpen ? 'open' : ''}`}

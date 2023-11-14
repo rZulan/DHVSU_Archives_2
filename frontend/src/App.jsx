@@ -18,18 +18,18 @@ function App() {
     <Router>
       <AuthProvider>
         <Routes>
-          <Route path='/login' element={<Authentication />} exact/>
+          <Route path='/login' element={<Authentication />} exact />
           <Route element={<DefaultPage />}>
-            <Route path='/' element={<Home />}/>
-            <Route path='/library' element={<Library />} exact/>
-            <Route path='/submit' element={<Submit />}/>
-            <Route path='/profile' element={<Profile />}/>
+            <Route path='/' element={<Home />} />
+            <Route path='/library' element={<Library />} exact />
+            <Route path='/submit' element={<Submit />} />
+            <Route path='/profile' element={<Profile />} />
           </Route>
 
           <Route element={<PrivateRoutes />}>
-            <Route path='/admin' element={<Admin />} exact/>
+            <Route path='/admin' element={<Admin />} exact />
           </Route>
-          
+
         </Routes>
       </AuthProvider>
     </Router>

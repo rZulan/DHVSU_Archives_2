@@ -246,9 +246,8 @@ const Submit = () => {
             id="title"
             value={formData.title}
             onChange={handleChange}
-            className={`border border-gray-400 rounded py-2 px-4 mb-4 w-full ${
-              errors.title && "border-red-500"
-            }`}
+            className={`border border-gray-400 rounded py-2 px-4 mb-4 w-full ${errors.title && "border-red-500"
+              }`}
           />
           {errors.title && (
             <p className="text-red-500 text-sm">{errors.title}</p>
@@ -262,9 +261,8 @@ const Submit = () => {
             id="abstract"
             value={formData.abstract}
             onChange={handleChange}
-            className={`border border-gray-400 rounded py-2 px-4 mb-4 w-full h-32 ${
-              errors.abstract && "border-red-500"
-            }`}
+            className={`border border-gray-400 rounded py-2 px-4 mb-4 w-full h-32 ${errors.abstract && "border-red-500"
+              }`}
           />
           {errors.abstract && (
             <p className="text-red-500 text-sm">{errors.abstract}</p>
@@ -294,12 +292,11 @@ const Submit = () => {
                   value={section.title}
                   onChange={(e) => handleSectionChange(e, index)}
                   placeholder="Section Title"
-                  className={`border border-gray-400 rounded py-2 px-4 mb-2 w-full ${
-                    errors.sections &&
+                  className={`border border-gray-400 rounded py-2 px-4 mb-2 w-full ${errors.sections &&
                     errors.sections[index] &&
                     errors.sections[index].title &&
                     "border-red-500"
-                  }`}
+                    }`}
                 />
                 {errors.sections &&
                   errors.sections[index] &&
@@ -313,12 +310,11 @@ const Submit = () => {
                   value={section.content}
                   onChange={(e) => handleSectionChange(e, index)}
                   placeholder="Section Content"
-                  className={`border border-gray-400 rounded py-2 px-4 w-full h-24 ${
-                    errors.sections &&
+                  className={`border border-gray-400 rounded py-2 px-4 w-full h-24 ${errors.sections &&
                     errors.sections[index] &&
                     errors.sections[index].content &&
                     "border-red-500"
-                  }`}
+                    }`}
                 />
                 {errors.sections &&
                   errors.sections[index] &&
@@ -329,11 +325,10 @@ const Submit = () => {
                   )}
                 <div className="flex items-center mt-2">
                   <p
-                    className={`border p-2 inline-block ${
-                      section.similarityScore > 0.5
+                    className={`border p-2 inline-block ${section.similarityScore > 0.5
                         ? "bg-red-500 text-white"
                         : "bg-green-500 text-white"
-                    }`}
+                      }`}
                   >
                     {`${(section.similarityScore * 100).toFixed(1)}%`}
                   </p>
@@ -385,9 +380,8 @@ const Submit = () => {
                   setFormData({ ...formData, newSectionTitle: e.target.value })
                 }
                 placeholder="New Section Title"
-                className={`border border-gray-400 rounded py-2 px-4 mr-2 w-full ${
-                  errors.newSectionTitle && "border-red-500"
-                }`}
+                className={`border border-gray-400 rounded py-2 px-4 mr-2 w-full ${errors.newSectionTitle && "border-red-500"
+                  }`}
               />
               {errors.newSectionTitle && (
                 <p className="text-red-500 text-sm">{errors.newSectionTitle}</p>
@@ -401,9 +395,8 @@ const Submit = () => {
                   })
                 }
                 placeholder="New Section Content"
-                className={`border border-gray-400 rounded py-2 px-4 w-full h-24 ${
-                  errors.newSectionContent && "border-red-500"
-                }`}
+                className={`border border-gray-400 rounded py-2 px-4 w-full h-24 ${errors.newSectionContent && "border-red-500"
+                  }`}
               />
               {errors.newSectionContent && (
                 <p className="text-red-500 text-sm">

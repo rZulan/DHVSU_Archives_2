@@ -6,7 +6,7 @@ const AdminPage = () => {
 
   const handleTabClick = (tab) => {
     setSelectedTab(tab);
-    setSelectedModel(null); // Reset selectedModel when changing tabs
+    setSelectedModel(null);
   };
 
   const handleModelClick = (model) => {
@@ -15,19 +15,17 @@ const AdminPage = () => {
 
   const renderContent = () => {
     if (selectedModel) {
-      // If a model is selected, show the back button and the specific model content
+
       return (
         <div>
           <button onClick={() => setSelectedModel(null)}>Back</button>
           {selectedModel === 'departments' ? (
             <div>
               <h2>Departments Content</h2>
-              {/* Show departments-related content here */}
             </div>
           ) : selectedModel === 'courses' ? (
             <div>
               <h2>Courses Content</h2>
-              {/* Show courses-related content here */}
             </div>
           ) : null}
         </div>
@@ -49,15 +47,15 @@ const AdminPage = () => {
         );
       case 'settings':
         const handleSaveAdminSettings = () => {
-          // Add functionality to save admin settings
+
           console.log('Admin settings saved');
         };
-        
+
         const handleSaveWebsiteSettings = () => {
-          // Add functionality to save website settings
+
           console.log('Website settings saved');
         };
-        
+
         return (
           <div>
             <h1 className='text-3xl font-bold mb-4'>Settings</h1>
@@ -82,7 +80,6 @@ const AdminPage = () => {
                     <label htmlFor='websiteTitle' className='block text-gray-700 font-semibold mb-2'>Website Title:</label>
                     <input type='text' id='websiteTitle' className='w-full border rounded-md p-3' />
                   </div>
-                  {/* Add more website settings inputs/fields here */}
                   <button onClick={handleSaveWebsiteSettings} className='bg-blue-500 text-white py-2 px-4 rounded-md'>
                     Save Website Settings
                   </button>
@@ -91,33 +88,32 @@ const AdminPage = () => {
             </div>
           </div>
         );
-        case 'database':
-          return (
-            <div>
-              <h1 className='text-3xl font-bold mb-4'>Database</h1>
-              <div className='grid grid-cols-2 gap-8'>
-                <div>
-                  <h2 className='text-2xl font-bold mb-4'>Departments</h2>
-                  <div className='bg-pink-200 p-4 cursor-pointer rounded-md mb-4' onClick={() => handleModelClick('departments')}>
-                    Department 1
-                  </div>
-                  <div className='bg-blue-200 p-4 cursor-pointer rounded-md' onClick={() => handleModelClick('departments')}>
-                    Department 2
-                  </div>
+      case 'database':
+        return (
+          <div>
+            <h1 className='text-3xl font-bold mb-4'>Database</h1>
+            <div className='grid grid-cols-2 gap-8'>
+              <div>
+                <h2 className='text-2xl font-bold mb-4'>Departments</h2>
+                <div className='bg-pink-200 p-4 cursor-pointer rounded-md mb-4' onClick={() => handleModelClick('departments')}>
+                  Department 1
                 </div>
-                <div>
-                  <h2 className='text-2xl font-bold mb-4'>Courses</h2>
-                  <div className='bg-green-200 p-4 cursor-pointer rounded-md mb-4' onClick={() => handleModelClick('courses')}>
-                    Course 1
-                  </div>
-                  <div className='bg-orange-200 p-4 cursor-pointer rounded-md' onClick={() => handleModelClick('courses')}>
-                    Course 2
-                  </div>
+                <div className='bg-blue-200 p-4 cursor-pointer rounded-md' onClick={() => handleModelClick('departments')}>
+                  Department 2
                 </div>
               </div>
-              {/* More models represented as clickable boxes */}
+              <div>
+                <h2 className='text-2xl font-bold mb-4'>Courses</h2>
+                <div className='bg-green-200 p-4 cursor-pointer rounded-md mb-4' onClick={() => handleModelClick('courses')}>
+                  Course 1
+                </div>
+                <div className='bg-orange-200 p-4 cursor-pointer rounded-md' onClick={() => handleModelClick('courses')}>
+                  Course 2
+                </div>
+              </div>
             </div>
-          );
+          </div>
+        );
       case 'statistics':
         return (
           <div>

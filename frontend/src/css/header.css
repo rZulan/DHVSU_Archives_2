@@ -1,157 +1,169 @@
-/* Header Styles */
+
 .header {
-    background-color: #333;
-    color: white;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 80px;
-    border-top: 5px solid #600414;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 999;
+  background-color: #333;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  border-top: 5px solid #600414;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+ 
+  color: white;
+ 
+  transition: color 0.3s ease-in-out;
+ 
+}
+
+.logo:hover,
+.nav-link:hover {
+  color: #fbbf24;
+ 
+}
+
+.header.visible {
+  animation: slideInDown 0.3s ease forwards;
+ 
+}
+
+.header.hidden {
+  animation: slideOutUp 0.3s ease forwards;
+ 
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-100%);
   }
 
-  .logo {
-    font-size: 24px;
-    font-weight: bold;
-    text-decoration: none; /* Remove underlines from the logo if it's a link */
-    color: white; /* Set the logo color */
-    transition: color 0.3s ease-in-out; /* Add smooth color transition */
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideOutUp {
+  from {
+    transform: translateY(0);
   }
 
-  .logo:hover,
-    .nav-link:hover {
-    color: #fbbf24; /* Change the color on hover */
-    }
-  
-  .header.visible {
-    animation: slideInDown 0.3s ease forwards; /* Updated animation for showing */
+  to {
+    transform: translateY(-105%);
   }
-  
-  .header.hidden {
-    animation: slideOutUp 0.3s ease forwards; /* Updated animation for hiding */
-  }
-  
-  @keyframes slideInDown {
-    from {
-      transform: translateY(-100%);
-    }
-    to {
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes slideOutUp {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(-105%);
-    }
-  }
-  
-  .header-content {
-    display: flex;
-    align-items: center;
-  }
-  
-  .mobile-menu-toggle {
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: none; /* Change to "block" to make it visible on mobile */
-  }
-  
-  .menu-icon {
-    margin-top: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 24px;
-    width: 30px;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .bar {
-    background-color: white;
-    height: 3px;
-    width: 30px;
-    margin: 2px 0;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  /* Mobile Menu Styles */
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+}
+
+.mobile-menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none;
+}
+
+.menu-icon {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 24px;
+  width: 30px;
+  transition: all 0.3s ease-in-out;
+}
+
+.bar {
+  background-color: white;
+  height: 3px;
+  width: 30px;
+  margin: 2px 0;
+  transition: all 0.3s ease-in-out;
+}
+
+
 
 .nav-menu {
-    display: flex;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .nav-link {
-    color: white;
-    text-decoration: none;
-    margin-right: 20px;
-    transition: color 0.3s ease-in-out;
-  }
-  
-  .logout-link {
-    color: #fbbf24;
-  }
-  
-  /* Media Query for Mobile Menu */
-  @media (max-width: 768px) {
-    .mobile-menu-toggle {
-      display: block;
-    }
-  
-    .nav-menu {
-      flex-direction: column;
-      position: absolute;
-      top: 60px;
-      right: -100%;
-      width: 100%;
-      background-color: #333;
-      transition: all 0.3s ease-in-out;
-    }
-  
-    .nav-menu.open {
-      right: 0;
-    }
-  
-    .nav-link {
-      margin-right: 0;
-      padding: 10px;
-    }
-  
-    .menu-icon {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-    }
-  
-    .bar {
-      width: 25px;
-    }
-  }
-  
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 
-  .logo-container {
-    display: flex;
-    align-items: center; /* Vertically center the image and text */
+.nav-link {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+  transition: color 0.3s ease-in-out;
+}
+
+.logout-link {
+  color: #fbbf24;
+}
+
+
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: block;
   }
-  
-  .logo-image {
-    width: 50px; /* Adjust the width as needed */
-    height: auto; /* Maintain aspect ratio */
+
+  .nav-menu {
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: -100%;
+    width: 100%;
+    background-color: #333;
+    transition: all 0.3s ease-in-out;
   }
-  
-  .logo-text {
-    font-size: 24px; /* Adjust the font size as needed */
-    margin-left: 10px; /* Add spacing between the image and text */
+
+  .nav-menu.open {
+    right: 0;
   }
-  
+
+  .nav-link {
+    margin-right: 0;
+    padding: 10px;
+  }
+
+  .menu-icon {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+  }
+
+  .bar {
+    width: 25px;
+  }
+}
+
+
+.logo-container {
+  display: flex;
+  align-items: center;
+ 
+}
+
+.logo-image {
+  width: 50px;
+ 
+  height: auto;
+ 
+}
+
+.logo-text {
+  font-size: 24px;
+ 
+  margin-left: 10px;
+ 
+}

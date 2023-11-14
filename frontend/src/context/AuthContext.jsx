@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }) => {
         logoutUser()
         return
       }
-  
+
       const response = await axios.post(
         "http://localhost:8000/api/token/refresh/",
         { refresh: authTokens.refresh },
@@ -75,7 +75,7 @@ export const AuthProvider = ({ children }) => {
           },
         }
       )
-  
+
       if (response.status === 200) {
         const data = response.data
         setAuthTokens(data)
@@ -84,7 +84,7 @@ export const AuthProvider = ({ children }) => {
       } else {
         logoutUser()
       }
-  
+
       if (loading) {
         setLoading(false)
       }
@@ -94,30 +94,30 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
-  
+
   let contextData = {
-    user:user,
-    loginUser:loginUser,
-    logoutUser:logoutUser
+    user: user,
+    loginUser: loginUser,
+    logoutUser: logoutUser
   }
 
-  useEffect(()=> {
-    if(loading) {
+  useEffect(() => {
+    if (loading) {
       updateToken()
     }
-    
+
     let minutes = 4 * 1000 * 60
-    
-    let interval = setInterval(()=> {
-      if(authTokens) {
+
+    let interval = setInterval(() => {
+      if (authTokens) {
         updateToken()
       }
     }, minutes)
-    return()=> clearInterval(interval)
-    
+    return () => clearInterval(interval)
+
   }, [authTokens, loading])
-  
-  return(
+
+  return (
     <AuthContext.Provider value={contextData}>
       {children}
     </AuthContext.Provider>

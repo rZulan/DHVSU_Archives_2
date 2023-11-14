@@ -55,7 +55,7 @@ const Profile = () => {
             </div>
           </div>
           <div className="md:w-3/4 p-8">
-            
+
             <div className="mb-10">
               <h2 className="text-2xl font-semibold mb-4 border-b-2 pb-2">Uploaded Documents</h2>
               <ul className="list-disc pl-5">
