@@ -47,7 +47,7 @@ const Header = () => {
       <div className="header-content">
         <div className="logo-container">
           <img src={logo} alt="DHVSU Archives Logo" className="logo-image" />
-          <span className="logo-text">Archives</span>
+          <span className="logo-text"><strong>ARCHIVES</strong></span>
         </div>
         
         {user && <p className='ml-8'>Welcome <u>{user.username}</u></p>}
@@ -72,7 +72,7 @@ const Header = () => {
         <Link to="/library" className="nav-link">
           Browse
         </Link>
-        <Link to="/admin" className="nav-link">
+        <Link to="/profile" className="nav-link">
           Profile
         </Link>
         {user && <p onClick={logoutUser} className="nav-link logout-link hover:cursor-pointer">Logout</p>}

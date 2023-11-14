@@ -22,36 +22,6 @@ export const AuthProvider = ({ children }) => {
   )
   let [loading, setLoading] = useState(true)
 
-  let registerUser = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await axios.post(
-        "http://localhost:8000/api/register/", // Replace with your registration endpoint
-        {
-          username: e.target.username.value,
-          email: e.target.email.value,
-          password: e.target.password.value,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        const data = response.data;
-        console.log('registered')
-        await loginUser(e)
-      } else {
-        console.log(response);
-      }
-    } catch (error) {
-      console.log("Registration error:", error);
-    }
-  };
-
   let loginUser = async (e) => {
     e.preventDefault()
 
@@ -126,11 +96,10 @@ export const AuthProvider = ({ children }) => {
 
   
   let contextData = {
-    user,
-    loginUser,
-    logoutUser,
-    registerUser, // Add the registerUser function to the context data
-  };
+    user:user,
+    loginUser:loginUser,
+    logoutUser:logoutUser
+  }
 
   useEffect(()=> {
     if(loading) {

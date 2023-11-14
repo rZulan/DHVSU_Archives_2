@@ -8,6 +8,7 @@ import DefaultPage from './utils/DefaultPage';
 import Authentication from './pages/Authentication';
 import { AuthProvider } from './context/AuthContext';
 import Submit from './pages/Submit';
+import Profile from './pages/profile';
 
 const isAuthenticated = false;
 const isAdmin = true;
@@ -22,6 +23,7 @@ function App() {
             <Route path='/' element={<Home />}/>
             <Route path='/library' element={<Library />} exact/>
             <Route path='/submit' element={<Submit />}/>
+            <Route path='/profile' element={<Profile />}/>
           </Route>
 
           <Route element={<PrivateRoutes />}>

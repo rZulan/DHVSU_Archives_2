@@ -37,7 +37,7 @@ const Library = () => {
 
       <div className="flex flex-wrap -mx-4">
 
-        <div className="w-full md:w-1/4 p-4 rounded-md shadow-lg bg-white">
+        <div className="w-full md:w-[15%] p-10 rounded-md shadow-lg bg-white h-[50%] ml-10 m-3">
           <h2 className="text-2xl font-bold mb-6">Filter</h2>
           <div className="mb-4">
             <h3 className="font-semibold">Document Type:</h3>
@@ -120,13 +120,13 @@ const Library = () => {
           </button>
         </div>
 
-        <div className="w-full md:w-3/4 p-4">
+        <div className="w-full md:w-3/4 p-4 ml-10">
 
           <div className="flex">
             <input
               type="text"
               placeholder="Search Document"
-              className="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#600414] transition duration-300"
+              className="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#600414] transition duration-300 shadow-lg"
             />
             <button
               className="bg-[#600414] text-white py-3 px-6 ml-2 rounded hover:bg-[#40030d] transition duration-300"
@@ -134,11 +134,12 @@ const Library = () => {
               Search
             </button>
           </div>
-          
-          <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
+          <div className="border-t-2 border-gray-300 my-4">
+
+          <div className="mt-6 bg-white p-4 rounded-lg shadow-md hover:scale-105 transition ease-in-out duration-300">
             <h3 className="text-xl font-semibold mb-2">Document Title</h3>
             <p className="text-gray-700">
-              Abstract: This is a sample document abstract. It can contain a brief
+              <strong>Abstract:</strong> This is a sample document abstract. It can contain a brief
               description of the document's content. This is a sample document abstract. It can contain a brief
               description of the document's content.This is a sample document abstract. It can contain a brief
               description of the document's content.This is a sample document abstract. It can contain a brief
@@ -148,10 +149,10 @@ const Library = () => {
             <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Course:</strong> BS in Computer Science</p>
           </div>
 
-          <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
+          <div className="mt-6 bg-white p-4 rounded-lg shadow-md hover:scale-105 transition ease-in-out duration-300">
             <h3 className="text-xl font-semibold mb-2">Document Title</h3>
             <p className="text-gray-700">
-              Abstract: This is a sample document abstract. It can contain a brief
+              <strong>Abstract:</strong> This is a sample document abstract. It can contain a brief
               description of the document's content. This is a sample document abstract. It can contain a brief
               description of the document's content.This is a sample document abstract. It can contain a brief
               description of the document's content.This is a sample document abstract. It can contain a brief
@@ -161,10 +162,10 @@ const Library = () => {
             <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Course:</strong> BS in Computer Science</p>
           </div>
 
-          <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
+          <div className="mt-6 bg-white p-4 rounded-lg shadow-md hover:scale-105 transition ease-in-out duration-300">
             <h3 className="text-xl font-semibold mb-2">Document Title</h3>
             <p className="text-gray-700">
-              Abstract: This is a sample document abstract. It can contain a brief
+              <strong>Abstract:</strong> This is a sample document abstract. It can contain a brief
               description of the document's content. This is a sample document abstract. It can contain a brief
               description of the document's content.This is a sample document abstract. It can contain a brief
               description of the document's content.This is a sample document abstract. It can contain a brief
@@ -174,10 +175,10 @@ const Library = () => {
             <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Course:</strong> BS in Computer Science</p>
           </div>
 
-          <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
+          <div className="mt-6 bg-white p-4 rounded-lg shadow-md hover:scale-105 transition ease-in-out duration-300">
             <h3 className="text-xl font-semibold mb-2">Document Title</h3>
             <p className="text-gray-700">
-              Abstract: This is a sample document abstract. It can contain a brief
+              <strong>Abstract:</strong> This is a sample document abstract. It can contain a brief
               description of the document's content. This is a sample document abstract. It can contain a brief
               description of the document's content.This is a sample document abstract. It can contain a brief
               description of the document's content.This is a sample document abstract. It can contain a brief
@@ -187,10 +188,10 @@ const Library = () => {
             <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Course:</strong> BS in Computer Science</p>
           </div>
 
-          <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
+          <div className="mt-6 bg-white p-4 rounded-lg shadow-md hover:scale-105 transition ease-in-out duration-300">
             <h3 className="text-xl font-semibold mb-2">Document Title</h3>
             <p className="text-gray-700">
-              Abstract: This is a sample document abstract. It can contain a brief
+              <strong>Abstract:</strong> This is a sample document abstract. It can contain a brief
               description of the document's content. This is a sample document abstract. It can contain a brief
               description of the document's content.This is a sample document abstract. It can contain a brief
               description of the document's content.This is a sample document abstract. It can contain a brief
@@ -198,6 +199,7 @@ const Library = () => {
             </p>
             <div className="border-t-2 border-gray-300 my-4"></div>
             <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Course:</strong> BS in Computer Science</p>
+          </div>
           </div>
 
         </div>
