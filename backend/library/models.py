@@ -65,7 +65,7 @@ class DocumentSection(models.Model):
 
     def __str__(self):
         return self.section
-    
+
 class Document(models.Model):
     title = models.CharField(
         max_length=64,
@@ -73,6 +73,7 @@ class Document(models.Model):
         help_text='Enter the Title of the Document.',
         null=False,
     )
+    abstract = models.TextField(null=True)
     school_year = models.CharField(
         max_length=4,
         verbose_name='School Year',

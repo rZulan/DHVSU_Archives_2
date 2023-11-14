@@ -3,7 +3,10 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-from . views import DocumentSectionAPIView, Endpoints, MyTokenObtainPairView, DocumentView
+from backend import settings
+from django.conf.urls.static import static
+
+from . views import DocumentSectionAPIView, Endpoints, MyTokenObtainPairView, DocumentView, SubmitDocumentView
 from authentication . views import RegisterView
 
 urlpatterns = [
@@ -13,4 +16,5 @@ urlpatterns = [
     path('documents/', DocumentView.as_view()),
     path('register/', RegisterView.as_view()),
     path('section/', DocumentSectionAPIView.as_view(), name='document-section-api'),
-]
+    path('submit/', SubmitDocumentView.as_view(), name='submit-document'),
+]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

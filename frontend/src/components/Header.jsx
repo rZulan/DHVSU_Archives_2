@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import '../css/header.css';
-import '../assets/logo.png';
+import logo from '../assets/logo.png';
 
 const Header = () => {
   let {user, logoutUser} = useContext(AuthContext)
@@ -46,7 +46,7 @@ const Header = () => {
     >
       <div className="header-content">
         <div className="logo-container">
-          <img src="../assets/logo.png" alt="DHVSU Archives Logo" className="logo-image" />
+          <img src={logo} alt="DHVSU Archives Logo" className="logo-image" />
           <span className="logo-text">Archives</span>
         </div>
         

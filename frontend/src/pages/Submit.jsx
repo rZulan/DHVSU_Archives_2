@@ -7,11 +7,16 @@ const Submit = () => {
     title: '',
     abstract: '',
     sections: [],
+    file: null,
     newSectionTitle: '',
     newSectionContent: '',
     submitted: false,
     verified: false,
   });
+
+  const averageSimilarityScore =
+    formData.sections.reduce((sum, section) => sum + section.similarityScore, 0) /
+    formData.sections.length;
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -45,10 +50,30 @@ const Submit = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // You'd typically send data to the server or perform actions here
-    setFormData({
-      ...formData,
-      submitted: true,
+
+    // Prepare data to be submitted
+    const dataToSubmit = {
+      title: formData.title,
+      abstract: formData.abstract,
+      sections: formData.sections.map(section => ({
+        section: section.title,
+        content: section.content,
+      })),
+    };
+
+    console.log('Data to Submit:', dataToSubmit);
+
+    // Send data to the server
+    axios.post('http://localhost:8000/api/submit/', dataToSubmit)
+    .then(response => {
+      console.log('Document submitted successfully:', response.data);
+      setFormData({
+        ...formData,
+        submitted: true,
+      });
+    })
+    .catch(error => {
+      console.error('Error submitting document:', error);
     });
   };
 
@@ -89,7 +114,7 @@ const Submit = () => {
     <div className="min-h-screen">
       <h1 className="text-3xl font-bold text-center my-4">Submit a Document</h1>
       <div className="container mx-auto px-4 py-8">
-        <form onSubmit={handleSubmit} className="mb-8">
+        <form onSubmit={handleSubmit} encType="multipart/form-data" className="mb-8">
           <label htmlFor="title" className="block mb-2">
             Title
           </label>
@@ -111,6 +136,17 @@ const Submit = () => {
             value={formData.abstract}
             onChange={handleChange}
             className="border border-gray-400 rounded py-2 px-4 mb-4 w-full h-32"
+          />
+
+          <label htmlFor="file" className="block mb-2">
+            File
+          </label>
+          <input
+            type="file"
+            name="file"
+            id="file"
+            onChange={(e) => setFormData({ ...formData, file: e.target.files[0] })}
+            className="mb-4"
           />
 
           <div className="mb-8">
@@ -141,6 +177,11 @@ const Submit = () => {
                 {/* Remaining code */}
               </div>
             ))}
+            {/* Display the average similarity score */}
+          <p className="text-lg font-semibold mb-2 mt-4">
+          Overall Plagiarism Score: <u>{isNaN(averageSimilarityScore) ? '0%' : `${(averageSimilarityScore * 100).toFixed(1)}%`} Plagiarized</u>
+          </p>
+            
             <div className="flex items-start">
               <input
                 type="text"
@@ -174,18 +215,6 @@ const Submit = () => {
             >
               Verify Plagiarism
             </button>
-            {formData.verified && (
-              <div>
-                <span className="text-green-500">Verified! No plagiarism detected.</span>
-                <input
-                  type="text"
-                  value={formData.similarityScore} // Similarity score display
-                  readOnly
-                  className="border border-gray-400 rounded py-1 px-2 w-12 text-center mt-2 mb-5"
-                />
-                {/* Add label or indication for similarity score */}
-              </div>
-            )}
             <button
               type="submit"
               className="bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"

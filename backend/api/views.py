@@ -3,8 +3,8 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from rest_framework_simplejwt.views import TokenObtainPairView
-from . serializers import MyTokenObtainPairSerializer
-from library.serializers import DocumentSectionSerializer, DocumentSerializer
+from . serializers import MyTokenObtainPairSerializer, SubmitDocumentSerializer
+from library.serializers import DocumentSerializer
 from library.models import Document, DocumentSection
 
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -50,3 +50,16 @@ class DocumentSectionAPIView(APIView):
         tfidf_matrix = tfidf.fit_transform([content1, content2])
         similarity = cosine_similarity(tfidf_matrix[0], tfidf_matrix[1])
         return similarity[0][0]
+
+class SubmitDocumentView(APIView):
+    def post(self, request):
+        serializer = SubmitDocumentSerializer(data=request.data)
+
+        print('Received files:', request.FILES)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            print('Serializer errors:', serializer.errors)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
