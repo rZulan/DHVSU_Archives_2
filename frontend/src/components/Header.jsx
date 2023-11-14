@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import '../css/header.css';
 import AuthContext from '../context/AuthContext';
+import '../css/header.css';
+import '../assets/logo.png';
 
 const Header = () => {
   let {user, logoutUser} = useContext(AuthContext)
@@ -44,7 +45,10 @@ const Header = () => {
       className={`header ${isMobileMenuOpen ? 'open' : ''} ${visible ? 'visible' : 'hidden'}`}
     >
       <div className="header-content">
-        <h1 className="logo">DHVSU Archives</h1>
+        <div className="logo-container">
+          <img src="../assets/logo.png" alt="DHVSU Archives Logo" className="logo-image" />
+          <span className="logo-text">Archives</span>
+        </div>
         
         {user && <p className='ml-8'>Welcome <u>{user.username}</u></p>}
         <button

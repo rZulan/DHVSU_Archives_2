@@ -122,12 +122,17 @@ const Library = () => {
 
         <div className="w-full md:w-3/4 p-4">
 
-          <div className="">
+          <div className="flex">
             <input
               type="text"
               placeholder="Search Document"
               className="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#600414] transition duration-300"
             />
+            <button
+              className="bg-[#600414] text-white py-3 px-6 ml-2 rounded hover:bg-[#40030d] transition duration-300"
+            >
+              Search
+            </button>
           </div>
           
           <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
@@ -140,7 +145,7 @@ const Library = () => {
               description of the document's content.
             </p>
             <div className="border-t-2 border-gray-300 my-4"></div>
-            <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Courses:</strong> BS in Computer Science</p>
+            <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Course:</strong> BS in Computer Science</p>
           </div>
 
           <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
@@ -153,7 +158,7 @@ const Library = () => {
               description of the document's content.
             </p>
             <div className="border-t-2 border-gray-300 my-4"></div>
-            <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Courses:</strong> BS in Computer Science</p>
+            <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Course:</strong> BS in Computer Science</p>
           </div>
 
           <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
@@ -166,7 +171,7 @@ const Library = () => {
               description of the document's content.
             </p>
             <div className="border-t-2 border-gray-300 my-4"></div>
-            <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Courses:</strong> BS in Computer Science</p>
+            <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Course:</strong> BS in Computer Science</p>
           </div>
 
           <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
@@ -179,7 +184,7 @@ const Library = () => {
               description of the document's content.
             </p>
             <div className="border-t-2 border-gray-300 my-4"></div>
-            <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Courses:</strong> BS in Computer Science</p>
+            <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Course:</strong> BS in Computer Science</p>
           </div>
 
           <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
@@ -192,7 +197,7 @@ const Library = () => {
               description of the document's content.
             </p>
             <div className="border-t-2 border-gray-300 my-4"></div>
-            <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Courses:</strong> BS in Computer Science</p>
+            <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Course:</strong> BS in Computer Science</p>
           </div>
 
         </div>

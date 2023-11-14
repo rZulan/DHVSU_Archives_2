@@ -139,3 +139,19 @@
     }
   }
   
+
+  .logo-container {
+    display: flex;
+    align-items: center; /* Vertically center the image and text */
+  }
+  
+  .logo-image {
+    width: 100px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+  }
+  
+  .logo-text {
+    font-size: 24px; /* Adjust the font size as needed */
+    margin-left: 10px; /* Add spacing between the image and text */
+  }
+  
