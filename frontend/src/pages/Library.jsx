@@ -134,65 +134,65 @@ const Library = () => {
             <h3 className="text-xl font-semibold mb-2">Document Title</h3>
             <p className="text-gray-700">
               Abstract: This is a sample document abstract. It can contain a brief
+              description of the document's content. This is a sample document abstract. It can contain a brief
+              description of the document's content.This is a sample document abstract. It can contain a brief
+              description of the document's content.This is a sample document abstract. It can contain a brief
               description of the document's content.
             </p>
             <div className="border-t-2 border-gray-300 my-4"></div>
-            <p className="text-gray-700">Author: John Doe</p>
-            <p className="text-gray-700">Year: 2023</p>
-            <p className="text-gray-700">Department: Computer Science</p>
-            <p className="text-gray-700">Courses: BSCS</p>
+            <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Courses:</strong> BS in Computer Science</p>
           </div>
 
           <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
             <h3 className="text-xl font-semibold mb-2">Document Title</h3>
             <p className="text-gray-700">
               Abstract: This is a sample document abstract. It can contain a brief
+              description of the document's content. This is a sample document abstract. It can contain a brief
+              description of the document's content.This is a sample document abstract. It can contain a brief
+              description of the document's content.This is a sample document abstract. It can contain a brief
               description of the document's content.
             </p>
             <div className="border-t-2 border-gray-300 my-4"></div>
-            <p className="text-gray-700">Author: John Doe</p>
-            <p className="text-gray-700">Year: 2023</p>
-            <p className="text-gray-700">Department: Computer Science</p>
-            <p className="text-gray-700">Courses: BSCS</p>
+            <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Courses:</strong> BS in Computer Science</p>
           </div>
 
           <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
             <h3 className="text-xl font-semibold mb-2">Document Title</h3>
             <p className="text-gray-700">
               Abstract: This is a sample document abstract. It can contain a brief
+              description of the document's content. This is a sample document abstract. It can contain a brief
+              description of the document's content.This is a sample document abstract. It can contain a brief
+              description of the document's content.This is a sample document abstract. It can contain a brief
               description of the document's content.
             </p>
             <div className="border-t-2 border-gray-300 my-4"></div>
-            <p className="text-gray-700">Author: John Doe</p>
-            <p className="text-gray-700">Year: 2023</p>
-            <p className="text-gray-700">Department: Computer Science</p>
-            <p className="text-gray-700">Courses: BSCS</p>
+            <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Courses:</strong> BS in Computer Science</p>
           </div>
 
           <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
             <h3 className="text-xl font-semibold mb-2">Document Title</h3>
             <p className="text-gray-700">
               Abstract: This is a sample document abstract. It can contain a brief
+              description of the document's content. This is a sample document abstract. It can contain a brief
+              description of the document's content.This is a sample document abstract. It can contain a brief
+              description of the document's content.This is a sample document abstract. It can contain a brief
               description of the document's content.
             </p>
             <div className="border-t-2 border-gray-300 my-4"></div>
-            <p className="text-gray-700">Author: John Doe</p>
-            <p className="text-gray-700">Year: 2023</p>
-            <p className="text-gray-700">Department: Computer Science</p>
-            <p className="text-gray-700">Courses: BSCS</p>
+            <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Courses:</strong> BS in Computer Science</p>
           </div>
 
           <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
             <h3 className="text-xl font-semibold mb-2">Document Title</h3>
             <p className="text-gray-700">
               Abstract: This is a sample document abstract. It can contain a brief
+              description of the document's content. This is a sample document abstract. It can contain a brief
+              description of the document's content.This is a sample document abstract. It can contain a brief
+              description of the document's content.This is a sample document abstract. It can contain a brief
               description of the document's content.
             </p>
             <div className="border-t-2 border-gray-300 my-4"></div>
-            <p className="text-gray-700">Author: John Doe</p>
-            <p className="text-gray-700">Year: 2023</p>
-            <p className="text-gray-700">Department: Computer Science</p>
-            <p className="text-gray-700">Courses: BSCS</p>
+            <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Courses:</strong> BS in Computer Science</p>
           </div>
 
         </div>
