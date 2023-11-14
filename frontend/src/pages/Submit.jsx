@@ -227,7 +227,7 @@ const Submit = () => {
   }
 
   return (
-    <div className="bg-gray-100 min-h-screen flex items-center justify-center mt-24">
+    <div className="bg-gray-100 min-h-screen flex items-center justify-center mt-10">
       <div className="bg-white p-8 rounded shadow-lg w-full md:w-2/3 lg:w-1/2 xl:w-1/3">
         <h1 className="text-3xl font-bold text-center mb-6">
           Submit a Document
