@@ -136,15 +136,17 @@ const Home = () => {
       <section className="mb-36">
         <h2 className="text-2xl font-bold mb-4">Recent Uploads</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {dummyFeaturedDocuments.map((document, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-md p-4">
-              <h4 className="text-lg font-bold mb-2">{document.title}</h4>
-              <p>{document.abstract}</p>
-              <a href={document.documentLink} className="bg-[#fbbf24] text-white rounded px-4 py-2 block text-center mt-2">
-                View Document
-              </a>
-            </div>
-          ))}
+        <div className="card">
+          <div className="content">
+            <p className="heading">Card Hover Effect
+            </p><p className="para">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi
+              laboriosam at voluptas minus culpa deserunt delectus sapiente
+              inventore pariatur
+            </p>
+            <button className="btn">Read more</button>
+          </div>
+        </div>
         </div>
       </section>
 

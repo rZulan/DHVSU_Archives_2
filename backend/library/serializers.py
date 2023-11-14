@@ -19,7 +19,7 @@ class AuthorSerializer(serializers.ModelSerializer):
 class DocumentSectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = DocumentSection
-        fields = ['id', 'section']
+        fields = ['id', 'section', 'content']
 
 class DocumentSerializer(serializers.ModelSerializer):
     class Meta:
