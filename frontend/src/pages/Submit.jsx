@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import axios from 'axios';
 
 const Submit = () => {
   const [formData, setFormData] = useState({
@@ -34,12 +33,13 @@ const Submit = () => {
 
   const addNewSection = () => {
     const { newSectionTitle, newSectionContent } = formData;
-    const sections = [...formData.sections, { title: newSectionTitle, content: newSectionContent }];
+    const sections = [...formData.sections, { title: newSectionTitle, content: newSectionContent, similarityScore: 0.0, }];
     setFormData({
       ...formData,
       sections,
       newSectionTitle: '',
       newSectionContent: '',
+      newsimilarityScore: 0.0,
     });
   };
 
@@ -53,11 +53,30 @@ const Submit = () => {
   };
 
   const handleVerify = () => {
-    // Simulating the verify action
-    // Here, you can call an API or a function to check for plagiarism
+    // Simulate the action
     setFormData({
       ...formData,
       verified: true,
+    });
+
+    // Send all section contents to the backend to get similarity score
+    formData.sections.forEach((section, index) => {
+      const content = section.content;
+    
+      axios.post('http://localhost:8000/api/section/', { content })
+        .then(response => {
+          const similarityScore = response.data.max_similarity_score; // Get similarity score for this section
+          console.log(`Section ${index + 1} Similarity Score: ${similarityScore}`);
+          
+          setFormData(prevState => {
+            const updatedSections = [...prevState.sections];
+            updatedSections[index] = { ...updatedSections[index], similarityScore };
+            return { ...prevState, sections: updatedSections };
+          });
+        })
+        .catch(error => {
+          console.error(`Error fetching similarity score for section ${index + 1}:`, error);
+        });
     });
   };
 
@@ -97,7 +116,7 @@ const Submit = () => {
           <div className="mb-8">
             <h2 className="text-lg font-semibold mb-2">Document Sections</h2>
             {formData.sections.map((section, index) => (
-              <div key={index} className="mb-4">
+              <div key={index} className="mb-10">
                 <input
                   type="text"
                   name="title"
@@ -113,16 +132,11 @@ const Submit = () => {
                   placeholder="Section Content"
                   className="border border-gray-400 rounded py-2 px-4 w-full h-24"
                 />
-                <input
-                  type="text"
-                  value={`${Math.floor((section.content.length / 1000) * 100)}%`}
-                  readOnly
-                  className="border border-gray-400 rounded py-1 px-2 w-12 text-center mt-2 mb-5"
-                />
+                <p className="border border-black p-2 inline-block">
+                  {`${(section.similarityScore * 100).toFixed(1)}%`}
+                </p>
                 <label className="text-sm ml-1">
-                  {Math.floor((section.content.length / 1000) * 100) > 70
-                    ? 'Original'
-                    : 'Plagiarized'}
+                  Plagiarized
                 </label>
                 {/* Remaining code */}
               </div>
@@ -161,7 +175,16 @@ const Submit = () => {
               Verify Plagiarism
             </button>
             {formData.verified && (
-              <span className="text-green-500">Verified! No plagiarism detected.</span>
+              <div>
+                <span className="text-green-500">Verified! No plagiarism detected.</span>
+                <input
+                  type="text"
+                  value={formData.similarityScore} // Similarity score display
+                  readOnly
+                  className="border border-gray-400 rounded py-1 px-2 w-12 text-center mt-2 mb-5"
+                />
+                {/* Add label or indication for similarity score */}
+              </div>
             )}
             <button
               type="submit"
