@@ -29,17 +29,19 @@ class DocumentView(APIView):
         serializer = DocumentSerializer(data, many=True)
         return Response(serializer.data)
 
+
 class DocumentSectionAPIView(APIView):
     def post(self, request):
         content = request.data.get('content')
 
         if content:
             all_sections = DocumentSection.objects.all()
-            max_similarity = 0  # Initializing with the lowest similarity
+            max_similarity = 0
 
             for section in all_sections:
-                similarity = self.calculate_similarity(content, section.content)
-                max_similarity = max(max_similarity, similarity)
+                if section.content:
+                    similarity = self.calculate_similarity(content, section.content)
+                    max_similarity = max(max_similarity, similarity)
 
             return Response({'max_similarity_score': max_similarity})
         else:
@@ -48,14 +50,16 @@ class DocumentSectionAPIView(APIView):
     def calculate_similarity(self, content1, content2):
         tfidf = TfidfVectorizer()
         tfidf_matrix = tfidf.fit_transform([content1, content2])
-        similarity = cosine_similarity(tfidf_matrix[0], tfidf_matrix[1])
-        return similarity[0][0]
+
+        if tfidf_matrix.shape[0] > 0 and tfidf_matrix.shape[1] > 0:
+            similarity = cosine_similarity(tfidf_matrix[0], tfidf_matrix[1])
+            return similarity[0][0]
+        else:
+            return 0
 
 class SubmitDocumentView(APIView):
     def post(self, request):
         serializer = SubmitDocumentSerializer(data=request.data)
-
-        print('Received files:', request.FILES)
 
         if serializer.is_valid():
             serializer.save()

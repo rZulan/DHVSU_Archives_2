@@ -1,28 +1,59 @@
-import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
+import axios from "axios";
 
 const Submit = () => {
   const [formData, setFormData] = useState({
-    title: '',
-    abstract: '',
+    title: "",
+    abstract: "",
     sections: [],
     file: null,
-    newSectionTitle: '',
-    newSectionContent: '',
+    newSectionTitle: "",
+    newSectionContent: "",
     submitted: false,
     verified: false,
   });
 
+  const [errors, setErrors] = useState({
+    title: "",
+    abstract: "",
+    file: "",
+    general: "",
+    sections: [], // Error messages for each section
+    newSectionTitle: "",
+    newSectionContent: "",
+  });
+
+  const addDefaultSections = () => {
+    const defaultSections = [
+      { title: "Introduction", content: "", similarityScore: 0.0 },
+      { title: "Background of the Study", content: "", similarityScore: 0.0 },
+      { title: "Statement of the Problem", content: "", similarityScore: 0.0 },
+    ];
+    setFormData({
+      ...formData,
+      sections: [...formData.sections, ...defaultSections],
+    });
+  };
+
   const averageSimilarityScore =
-    formData.sections.reduce((sum, section) => sum + section.similarityScore, 0) /
-    formData.sections.length;
+    formData.sections.reduce(
+      (sum, section) => sum + section.similarityScore,
+      0
+    ) / formData.sections.length;
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({
       ...formData,
       [name]: value,
+    });
+
+    // Clear error message when user starts typing
+    setErrors({
+      ...errors,
+      [name]: "",
+      general: "",
     });
   };
 
@@ -34,11 +65,29 @@ const Submit = () => {
       ...formData,
       sections,
     });
+
+    // Clear error message when user starts typing
+    setErrors({
+      ...errors,
+      sections: [
+        ...errors.sections.slice(0, index),
+        { title: "", content: "" },
+        ...errors.sections.slice(index + 1),
+      ],
+      general: "",
+    });
   };
 
   const addNewSection = () => {
     const { newSectionTitle, newSectionContent } = formData;
-    const sections = [...formData.sections, { title: newSectionTitle, content: newSectionContent, similarityScore: 0.0, }];
+    const sections = [
+      ...formData.sections,
+      {
+        title: newSectionTitle,
+        content: newSectionContent,
+        similarityScore: 0.0,
+      },
+    ];
     setFormData({
       ...formData,
       sections,
@@ -50,56 +99,101 @@ const Submit = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    if (formData.sections.length === 0) {
+      setErrors({
+        ...errors,
+        sections: [{ title: "Please add at least one section.", content: "" }],
+      });
+      return; // Do not proceed with submission
+    }
+
     // Prepare data to be submitted
     const dataToSubmit = {
       title: formData.title,
       abstract: formData.abstract,
-      sections: formData.sections.map(section => ({
+      sections: formData.sections.map((section) => ({
         section: section.title,
         content: section.content,
       })),
     };
 
-    console.log('Data to Submit:', dataToSubmit);
+    console.log("Data to Submit:", dataToSubmit);
 
     // Send data to the server
-    axios.post('http://localhost:8000/api/submit/', dataToSubmit)
-    .then(response => {
-      console.log('Document submitted successfully:', response.data);
-      setFormData({
-        ...formData,
-        submitted: true,
+    axios
+      .post("http://localhost:8000/api/submit/", dataToSubmit, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        console.log("Document submitted successfully:", response.data);
+        setFormData({
+          ...formData,
+          submitted: true,
+        });
+      })
+      .catch((error) => {
+        console.error("Error submitting document:", error);
+
+        // Check if the error is a custom error message from the server
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.detail
+        ) {
+          setErrors({
+            ...errors,
+            general: error.response.data.detail,
+          });
+        } else if (error.response && error.response.data) {
+          // Set error messages for specific fields
+          setErrors({
+            ...errors,
+            ...error.response.data,
+          });
+        } else {
+          // Handle other types of errors
+          setErrors({
+            ...errors,
+            general:
+              "An error occurred while submitting the document. Please try again.",
+          });
+        }
       });
-    })
-    .catch(error => {
-      console.error('Error submitting document:', error);
-    });
   };
 
   const handleVerify = () => {
-    // Simulate the action
     setFormData({
       ...formData,
       verified: true,
     });
 
-    // Send all section contents to the backend to get similarity score
     formData.sections.forEach((section, index) => {
       const content = section.content;
-    
-      axios.post('http://localhost:8000/api/section/', { content })
-        .then(response => {
-          const similarityScore = response.data.max_similarity_score; // Get similarity score for this section
-          console.log(`Section ${index + 1} Similarity Score: ${similarityScore}`);
-          
-          setFormData(prevState => {
+
+      axios
+        .post("http://localhost:8000/api/section/", { content })
+        .then((response) => {
+          const similarityScore = response.data.max_similarity_score;
+          console.log(
+            `Section ${index + 1} Similarity Score: ${similarityScore}`
+          );
+
+          setFormData((prevState) => {
             const updatedSections = [...prevState.sections];
-            updatedSections[index] = { ...updatedSections[index], similarityScore };
+            updatedSections[index] = {
+              ...updatedSections[index],
+              similarityScore,
+            };
             return { ...prevState, sections: updatedSections };
           });
         })
-        .catch(error => {
-          console.error(`Error fetching similarity score for section ${index + 1}:`, error);
+        .catch((error) => {
+          console.error(
+            `Error fetching similarity score for section ${index + 1}:`,
+            error
+          );
         });
     });
   };
