@@ -73,7 +73,7 @@ class Document(models.Model):
         help_text='Enter the Title of the Document.',
         null=False,
     )
-    abstract = models.TextField(null=True)
+    abstract = models.TextField()
     school_year = models.CharField(
         max_length=4,
         verbose_name='School Year',
