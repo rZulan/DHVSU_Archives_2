@@ -22,12 +22,42 @@ export const AuthProvider = ({ children }) => {
   )
   let [loading, setLoading] = useState(true)
 
+  let registerUser = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/register/", // Replace with your registration endpoint
+        {
+          username: e.target.username.value,
+          email: e.target.email.value,
+          password: e.target.password.value,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        const data = response.data;
+        console.log('registered')
+        await loginUser(e)
+      } else {
+        console.log(response);
+      }
+    } catch (error) {
+      console.log("Registration error:", error);
+    }
+  };
+
   let loginUser = async (e) => {
     e.preventDefault()
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/token/",
+        "http://127.0.0.1:8000/api/token/",
         {
           username: e.target.username.value,
           password: e.target.password.value,
@@ -67,7 +97,7 @@ export const AuthProvider = ({ children }) => {
       }
 
       const response = await axios.post(
-        "http://localhost:8000/api/token/refresh/",
+        "http://127.0.0.1:8000/api/token/refresh/",
         { refresh: authTokens.refresh },
         {
           headers: {
@@ -98,7 +128,8 @@ export const AuthProvider = ({ children }) => {
   let contextData = {
     user: user,
     loginUser: loginUser,
-    logoutUser: logoutUser
+    logoutUser: logoutUser,
+    registerUser: registerUser
   }
 
   useEffect(() => {

@@ -145,11 +145,7 @@ const Submit = () => {
 
     // Send data to the server
     axios
-      .post("http://localhost:8000/api/submit/", dataToSubmit, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
+      .post("http://127.0.0.1:8000/api/submit/", dataToSubmit)
       .then((response) => {
         console.log("Document submitted successfully:", response.data);
         setFormData({
@@ -197,7 +193,7 @@ const Submit = () => {
       const content = section.content;
 
       axios
-        .post("http://localhost:8000/api/section/", { content })
+        .post("http://127.0.0.1:8000/api/section/", { content })
         .then((response) => {
           const similarityScore = response.data.max_similarity_score;
           console.log(
