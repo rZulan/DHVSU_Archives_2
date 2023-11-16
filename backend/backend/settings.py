@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
+    'django_extensions',
 
     # my apps
     'rest_framework_simplejwt.token_blacklist',
@@ -40,6 +41,11 @@ INSTALLED_APPS = [
     'library.apps.LibraryConfig',
     'authentication.apps.AuthenticationConfig',
 ]
+
+GRAPH_MODELS ={
+    'all_applications': True,
+    'graph_models': True,
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
