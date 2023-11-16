@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import axios from "axios";
 
 const Library = () => {
@@ -157,88 +158,18 @@ const Library = () => {
           <div className="border-t-2 border-gray-300 my-4">
             {
               documents && documents.map((document, index) => (
-                <div className="mt-6 bg-white p-4 rounded-lg shadow-md hover:scale-105 transition ease-in-out duration-300" key={index}>
-                  <h3 className="text-xl font-semibold mb-2">{document.title}</h3>
-                  <p className="text-gray-700">
-                    <strong>Abstract:</strong> {document.abstract}
-                  </p>
-                  <div className="border-t-2 border-gray-300 my-4"></div>
-                  <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Course:</strong> BS in Computer Science</p>
-                </div>
+                <Link to={`/document/${document.id}`} key={index}>
+                  <div className="mt-6 bg-white p-4 rounded-lg shadow-md hover:scale-105 transition ease-in-out duration-300" key={index}>
+                    <h3 className="text-xl font-semibold mb-2">{document.title}</h3>
+                    <p className="text-gray-700">
+                      <strong>Abstract:</strong> {document.abstract}
+                    </p>
+                    <div className="border-t-2 border-gray-300 my-4"></div>
+                    <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>{document.school_year} <strong>Department: </strong> CCS <strong>Course:</strong> BS in Computer Science</p>
+                  </div>
+                </Link>
               ))
             }
-            {/* <div className="mt-6 bg-white p-4 rounded-lg shadow-md hover:scale-105 transition ease-in-out duration-300">
-              <h3 className="text-xl font-semibold mb-2">Document Title</h3>
-              <p className="text-gray-700">
-                <strong>Abstract:</strong> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium harum dolor, commodi quae doloribus quam voluptas nobis quasi animi fugiat.
-              </p>
-              <div className="border-t-2 border-gray-300 my-4"></div>
-              <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Course:</strong> BS in Computer Science</p>
-            </div> */}
-            {/* <div className="mt-6 bg-white p-4 rounded-lg shadow-md hover:scale-105 transition ease-in-out duration-300">
-              <h3 className="text-xl font-semibold mb-2">Document Title</h3>
-              <p className="text-gray-700">
-                <strong>Abstract:</strong> This is a sample document abstract. It can contain a brief
-                description of the document's content. This is a sample document abstract. It can contain a brief
-                description of the document's content.This is a sample document abstract. It can contain a brief
-                description of the document's content.This is a sample document abstract. It can contain a brief
-                description of the document's content.
-              </p>
-              <div className="border-t-2 border-gray-300 my-4"></div>
-              <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Course:</strong> BS in Computer Science</p>
-            </div>
-
-            <div className="mt-6 bg-white p-4 rounded-lg shadow-md hover:scale-105 transition ease-in-out duration-300">
-              <h3 className="text-xl font-semibold mb-2">Document Title</h3>
-              <p className="text-gray-700">
-                <strong>Abstract:</strong> This is a sample document abstract. It can contain a brief
-                description of the document's content. This is a sample document abstract. It can contain a brief
-                description of the document's content.This is a sample document abstract. It can contain a brief
-                description of the document's content.This is a sample document abstract. It can contain a brief
-                description of the document's content.
-              </p>
-              <div className="border-t-2 border-gray-300 my-4"></div>
-              <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Course:</strong> BS in Computer Science</p>
-            </div>
-
-            <div className="mt-6 bg-white p-4 rounded-lg shadow-md hover:scale-105 transition ease-in-out duration-300">
-              <h3 className="text-xl font-semibold mb-2">Document Title</h3>
-              <p className="text-gray-700">
-                <strong>Abstract:</strong> This is a sample document abstract. It can contain a brief
-                description of the document's content. This is a sample document abstract. It can contain a brief
-                description of the document's content.This is a sample document abstract. It can contain a brief
-                description of the document's content.This is a sample document abstract. It can contain a brief
-                description of the document's content.
-              </p>
-              <div className="border-t-2 border-gray-300 my-4"></div>
-              <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Course:</strong> BS in Computer Science</p>
-            </div>
-
-            <div className="mt-6 bg-white p-4 rounded-lg shadow-md hover:scale-105 transition ease-in-out duration-300">
-              <h3 className="text-xl font-semibold mb-2">Document Title</h3>
-              <p className="text-gray-700">
-                <strong>Abstract:</strong> This is a sample document abstract. It can contain a brief
-                description of the document's content. This is a sample document abstract. It can contain a brief
-                description of the document's content.This is a sample document abstract. It can contain a brief
-                description of the document's content.This is a sample document abstract. It can contain a brief
-                description of the document's content.
-              </p>
-              <div className="border-t-2 border-gray-300 my-4"></div>
-              <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Course:</strong> BS in Computer Science</p>
-            </div>
-
-            <div className="mt-6 bg-white p-4 rounded-lg shadow-md hover:scale-105 transition ease-in-out duration-300">
-              <h3 className="text-xl font-semibold mb-2">Document Title</h3>
-              <p className="text-gray-700">
-                <strong>Abstract:</strong> This is a sample document abstract. It can contain a brief
-                description of the document's content. This is a sample document abstract. It can contain a brief
-                description of the document's content.This is a sample document abstract. It can contain a brief
-                description of the document's content.This is a sample document abstract. It can contain a brief
-                description of the document's content.
-              </p>
-              <div className="border-t-2 border-gray-300 my-4"></div>
-              <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Course:</strong> BS in Computer Science</p>
-            </div> */}
           </div>
 
         </div>

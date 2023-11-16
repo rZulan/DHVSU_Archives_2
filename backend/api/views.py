@@ -23,12 +23,22 @@ class Endpoints(APIView):
         }
         return Response(data, status=status.HTTP_200_OK)
 
-class DocumentView(APIView):
+class DocumentsView(APIView):
     def get(self, request):
         data = Document.objects.all()
         serializer = DocumentSerializer(data, many=True)
         return Response(serializer.data)
 
+class DocumentView(APIView):
+    def get(self, request, id):
+        print(id)
+        try:
+            user = Document.objects.get(id=id)
+        except Document.DoesNotExist:
+            return Response({"error": "Document not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = DocumentSerializer(instance=user)
+        return Response(serializer.data)
 
 class DocumentSectionAPIView(APIView):
     def post(self, request):
@@ -67,3 +77,4 @@ class SubmitDocumentView(APIView):
         else:
             print('Serializer errors:', serializer.errors)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
