@@ -12,6 +12,7 @@ const Library = () => {
 
   const [year, setYear] = useState("");
   const [course, setCourse] = useState("");
+  const [searchQuery, setSearchQuery] = useState(""); // Step 1: Add search query state
   const [documents, setDocuments] = useState(null);
 
   const getDocuments = () => {
@@ -44,14 +45,23 @@ const Library = () => {
     // Add filtering logic here based on documentType, year, and course
   };
 
+  const handleSearchChange = (event) => {
+    // Step 2: Update the search query state
+    setSearchQuery(event.target.value);
+  };
+
   useEffect(() => {
     getDocuments();
   }, []);
 
   useEffect(() => {
     // This useEffect will run after every render, including when documents state is updated
-    console.log(documents);
   }, [documents]);
+
+  // Step 3: Filter documents based on search query
+  const filteredDocuments = documents && documents.filter(document =>
+    document.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   return (
     <div className="main-body bg-[#F6F6F6] p-7">
 
@@ -147,6 +157,8 @@ const Library = () => {
             <input
               type="text"
               placeholder="Search Document"
+              value={searchQuery}
+              onChange={handleSearchChange} // Attach the onChange handler
               className="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#600414] transition duration-300 shadow-lg"
             />
             <button
@@ -156,11 +168,11 @@ const Library = () => {
             </button>
           </div>
           <div className="border-t-2 border-gray-300 my-4">
-            {
-              documents && documents.map((document, index) => (
-                <Link to={`/document/${document.id}`} key={index}>
-                  <div className="mt-6 bg-white p-4 rounded-lg shadow-md hover:scale-105 transition ease-in-out duration-300" key={index}>
-                    <h3 className="text-xl font-semibold mb-2">{document.title}</h3>
+          {
+            filteredDocuments && filteredDocuments.map((document, index) => (
+              <Link to={`/document/${document.id}`} key={index}>
+                <div className="mt-6 bg-white p-4 rounded-lg shadow-md hover:scale-105 transition ease-in-out duration-300" key={index}>
+                  <h3 className="text-xl font-semibold mb-2">{document.title}</h3>
                     <p className="text-gray-700">
                       <strong>Abstract:</strong> {document.abstract}
                     </p>
