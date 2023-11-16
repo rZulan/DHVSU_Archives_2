@@ -100,6 +100,7 @@ const Submit = () => {
       title: formData.title,
       abstract: formData.abstract,
       authors: formData.authors.split(", "),
+      department: formData.deparment,
       course: formData.course,
       schoolYear: formData.schoolYear,
       sections: [
@@ -177,6 +178,7 @@ const Submit = () => {
   }
 
   return (
+    <div className="main-body">
     <div className="bg-gray-100 min-h-screen flex items-center justify-center mt-10">
       <div className="bg-white p-8 rounded shadow-lg w-full md:w-2/3 lg:w-1/2 xl:w-1/3">
         <h1 className="text-3xl font-bold text-center mb-6">Submit a Document</h1>
@@ -228,25 +230,63 @@ const Submit = () => {
             className={`border border-gray-400 rounded py-2 px-4 mb-4 w-full ${errors.authors && "border-red-500"}`}
           />
 
-          <label htmlFor="course" className="block mb-2">Course</label>
-          <input
-            type="text"
+          <label htmlFor="department" className="block mb-2">
+            Department
+          </label>
+          <select
+            name="department"
+            id="department"
+            value={formData.department}
+            onChange={handleChange}
+            className={`border border-gray-400 rounded py-2 px-4 mb-4 w-full ${
+              errors.department && "border-red-500"
+            }`}
+          >
+            <option value="">Select Department</option>
+            <option value="Department 1">Department 1</option>
+            <option value="Department 2">Department 2</option>
+            <option value="Department 3">Department 3</option>
+            {/* Add more options as needed */}
+          </select>
+
+          <label htmlFor="course" className="block mb-2">
+            Course
+          </label>
+          <select
             name="course"
             id="course"
             value={formData.course}
             onChange={handleChange}
-            className={`border border-gray-400 rounded py-2 px-4 mb-4 w-full ${errors.course && "border-red-500"}`}
-          />
+            className={`border border-gray-400 rounded py-2 px-4 mb-4 w-full ${
+              errors.course && "border-red-500"
+            }`}
+          >
+            <option value="">Select Course</option>
+            <option value="Course 1">Course 1</option>
+            <option value="Course 2">Course 2</option>
+            <option value="Course 3">Course 3</option>
+            {/* Add more options as needed */}
+          </select>
 
-          <label htmlFor="schoolYear" className="block mb-2">School Year</label>
-          <input
-            type="text"
+          <label htmlFor="schoolYear" className="block mb-2">
+            School Year
+          </label>
+          <select
             name="schoolYear"
             id="schoolYear"
             value={formData.schoolYear}
             onChange={handleChange}
-            className={`border border-gray-400 rounded py-2 px-4 mb-4 w-full ${errors.schoolYear && "border-red-500"}`}
-          />
+            className={`border border-gray-400 rounded py-2 px-4 mb-4 w-full ${
+              errors.schoolYear && "border-red-500"
+            }`}
+          >
+            <option value="">Select School Year</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            {/* Add more options as needed */}
+          </select>
+
 
           <div className="mb-8">
             <h2 className="text-lg font-semibold mb-4">Document Section</h2>
@@ -350,6 +390,7 @@ const Submit = () => {
           </div>
         </form>
       </div>
+    </div>
     </div>
   );
 };

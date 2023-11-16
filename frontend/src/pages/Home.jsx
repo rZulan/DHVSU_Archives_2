@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [brand, setBrand] = useState('Welcome DHVSU Archives');
-  const [description, setDescription] = useState('Explore and submit documents');
+  const [description, setDescription] = useState('Explore and Submit documents');
   const [featuredDocuments, setFeaturedDocuments] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -107,8 +107,8 @@ const Home = () => {
     <div className="main-body bg-[#F6F6F6]">
       <div className="max-w-7xl mx-auto p-8">
         <div className="text-center mb-20">
-          <h1 className="text-4xl font-bold mb-4">{brand}</h1>
-          <p className="text-lg">{description}</p>
+          <h1 className="text-4xl font-bold mb-4 text-[#600414]">{brand}</h1>
+          <p className="text-2xl">{description}</p>
         </div>
 
         <div className="flex flex-col items-center justify-center mb-8">
