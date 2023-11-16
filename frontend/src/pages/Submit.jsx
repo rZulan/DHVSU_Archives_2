@@ -404,7 +404,7 @@ const Submit = () => {
               <button
                 type="button"
                 onClick={addNewSection}
-                className="bg-blue-500 text-white font-bold py-2 px-4 ml-2 rounded focus:outline-none focus:shadow-outline"
+                className="bg-[#600414] text-white font-bold py-2 px-4 ml-2 rounded focus:outline-none focus:shadow-outline"
               >
                 Add Section
               </button>
@@ -423,7 +423,7 @@ const Submit = () => {
             </button>
             <button
               type="submit"
-              className="bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-[#600414] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
               Submit Document
             </button>

@@ -74,7 +74,7 @@ class Authentication extends Component {
           onChange={this.handleLoginChange}
           placeholder="Username"
           className="w-full border-2 rounded-md p-3"
-          style={{ borderColor: '#600414' }}
+    
         />
         <input
           type="password"
@@ -83,9 +83,9 @@ class Authentication extends Component {
           onChange={this.handleLoginChange}
           placeholder="Password"
           className="w-full border-2 rounded-md p-3"
-          style={{ borderColor: '#600414' }}
+ 
         />
-        <button type="submit" className="w-full bg-amber-400 text-white rounded-md py-2">
+        <button type="submit" className="w-full bg-amber-400 hover:bg-amber-300 text-white rounded-md py-2">
           Login
         </button>
       </form>
@@ -98,7 +98,7 @@ class Authentication extends Component {
           onChange={this.handleRegisterChange}
           placeholder="Email"
           className="w-full border-2 rounded-md p-3"
-          style={{ borderColor: '#600414' }}
+     
         />
         <input
           type="text"
@@ -107,7 +107,7 @@ class Authentication extends Component {
           onChange={this.handleRegisterChange}
           placeholder="Username"
           className="w-full border-2 rounded-md p-3"
-          style={{ borderColor: '#600414' }}
+  
         />
         <input
           type="password"
@@ -116,7 +116,7 @@ class Authentication extends Component {
           onChange={this.handleRegisterChange}
           placeholder="Password"
           className="w-full border-2 rounded-md p-3"
-          style={{ borderColor: '#600414' }}
+
         />
         <input
           type="password"
@@ -125,9 +125,9 @@ class Authentication extends Component {
           onChange={this.handleRegisterChange}
           placeholder="Confirm Password"
           className="w-full border-2 rounded-md p-3"
-          style={{ borderColor: '#600414' }}
+   
         />
-        <button type="submit" className="w-full bg-amber-400 text-white rounded-md py-2">
+        <button type="submit" className="w-full bg-amber-400 hover:bg-amber-300 text-white rounded-md py-2">
           Register
         </button>
       </form>
@@ -150,9 +150,16 @@ class Authentication extends Component {
             {this.state.isLogin ? 'Login' : 'Register'}
           </h2>
           {this.renderForm()}
+          {this.state.isLogin && (
+            <div>
+              <button className='mt-4 text-[#600414] hover:text-[#36020b]'>
+                Forgot Password?
+              </button>
+            </div>
+          )}
           <button
             onClick={this.toggleForm}
-            className="mt-4 text-amber-400 hover:text-amber-500"
+            className="mt-4 text-[#600414] hover:text-[#36020b]"
           >
             {this.state.isLogin ? 'Need an account? Register' : 'Already have an account? Login'}
           </button>
