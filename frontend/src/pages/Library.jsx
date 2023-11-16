@@ -12,8 +12,10 @@ const Library = () => {
 
   const [year, setYear] = useState("");
   const [course, setCourse] = useState("");
-  const [searchQuery, setSearchQuery] = useState(""); // Step 1: Add search query state
+  const [searchQuery, setSearchQuery] = useState("");
   const [documents, setDocuments] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const documentsPerPage = 5;
 
   const getDocuments = () => {
     axios.get(`http://127.0.0.1:8000/api/documents/`)
@@ -46,7 +48,6 @@ const Library = () => {
   };
 
   const handleSearchChange = (event) => {
-    // Step 2: Update the search query state
     setSearchQuery(event.target.value);
   };
 
@@ -58,15 +59,17 @@ const Library = () => {
     // This useEffect will run after every render, including when documents state is updated
   }, [documents]);
 
-  // Step 3: Filter documents based on search query
-  const filteredDocuments = documents && documents.filter(document =>
-    document.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const indexOfLastDocument = currentPage * documentsPerPage;
+  const indexOfFirstDocument = indexOfLastDocument - documentsPerPage;
+  const currentDocuments = documents && documents.slice(indexOfFirstDocument, indexOfLastDocument);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <div className="main-body bg-[#F6F6F6] p-7">
-
       <div className="flex flex-wrap -mx-4">
-
         <div className="w-full md:w-[15%] p-10 rounded-md shadow-lg bg-white h-[50%] ml-10 m-3">
           <h2 className="text-2xl font-bold mb-6">Filter</h2>
           <div className="mb-4">
@@ -152,13 +155,12 @@ const Library = () => {
         </div>
 
         <div className="w-full md:w-3/4 p-4 ml-10">
-
           <div className="flex">
             <input
               type="text"
               placeholder="Search Document"
               value={searchQuery}
-              onChange={handleSearchChange} // Attach the onChange handler
+              onChange={handleSearchChange}
               className="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#600414] transition duration-300 shadow-lg"
             />
             <button
@@ -168,11 +170,11 @@ const Library = () => {
             </button>
           </div>
           <div className="border-t-2 border-gray-300 my-4">
-          {
-            filteredDocuments && filteredDocuments.map((document, index) => (
-              <Link to={`/document/${document.id}`} key={index}>
-                <div className="mt-6 bg-white p-4 rounded-lg shadow-md hover:scale-105 transition ease-in-out duration-300" key={index}>
-                  <h3 className="text-xl font-semibold mb-2">{document.title}</h3>
+            {currentDocuments &&
+              currentDocuments.map((document, index) => (
+                <Link to={`/document/${document.id}`} key={index}>
+                  <div className="mt-6 bg-white p-4 rounded-lg shadow-md hover:scale-105 transition ease-in-out duration-300" key={index}>
+                    <h3 className="text-xl font-semibold mb-2">{document.title}</h3>
                     <p className="text-gray-700">
                       <strong>Abstract:</strong> {document.abstract}
                     </p>
@@ -180,44 +182,44 @@ const Library = () => {
                     <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>{document.school_year} <strong>Department: </strong> CCS <strong>Course:</strong> BS in Computer Science</p>
                   </div>
                 </Link>
-              ))
-            }
+              ))}
           </div>
 
+          {/* Pagination */}
+          <div className="flex justify-center">
+            <ul className="flex space-x-2">
+              <li>
+                <button
+                  className="bg-[#600414] text-white py-2 px-4 rounded hover:bg-[#40030d]"
+                  onClick={() => paginate(currentPage - 1)}
+                  disabled={currentPage === 1}
+                >
+                  Previous
+                </button>
+              </li>
+              {Array.from({ length: Math.ceil((documents && documents.length) / documentsPerPage) }, (_, i) => (
+                <li key={i}>
+                  <button
+                    className={`bg-[#600414] text-white py-2 px-4 rounded hover:bg-[#40030d] ${currentPage === i + 1 ? 'bg-opacity-60' : ''}`}
+                    onClick={() => paginate(i + 1)}
+                  >
+                    {i + 1}
+                  </button>
+                </li>
+              ))}
+              <li>
+                <button
+                  className="bg-[#600414] text-white py-2 px-4 rounded hover:bg-[#40030d]"
+                  onClick={() => paginate(currentPage + 1)}
+                  disabled={currentPage === Math.ceil((documents && documents.length) / documentsPerPage)}
+                >
+                  Next
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
-
       </div>
-
-      <div className="mt-6 flex justify-center">
-        <ul className="flex space-x-2">
-          <li>
-            <button className="bg-[#600414] text-white py-2 px-4 rounded hover:bg-[#40030d]">
-              Previous
-            </button>
-          </li>
-          <li>
-            <button className="bg-[#600414] text-white py-2 px-4 rounded hover:bg-[#40030d]">
-              1
-            </button>
-          </li>
-          <li>
-            <button className="bg-[#600414] text-white py-2 px-4 rounded hover:bg-[#40030d]">
-              2
-            </button>
-          </li>
-          <li>
-            <button className="bg-[#600414] text-white py-2 px-4 rounded hover:bg-[#40030d]">
-              3
-            </button>
-          </li>
-          <li>
-            <button className="bg-[#600414] text-white py-2 px-4 rounded hover:bg-[#40030d]">
-              Next
-            </button>
-          </li>
-        </ul>
-      </div>
-
     </div>
   );
 };
