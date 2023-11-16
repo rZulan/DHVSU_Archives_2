@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const Library = () => {
   const [documentType, setDocumentType] = useState({
@@ -9,8 +10,18 @@ const Library = () => {
   });
 
   const [year, setYear] = useState("");
-
   const [course, setCourse] = useState("");
+  const [documents, setDocuments] = useState(null);
+
+  const getDocuments = () => {
+    axios.get(`http://127.0.0.1:8000/api/documents/`)
+      .then(res => {
+        setDocuments(res.data);
+      })
+      .catch(error => {
+        console.error("Error fetching documents:", error);
+      });
+  };
 
   const handleDocumentTypeChange = (event) => {
     const { name, checked } = event.target;
@@ -29,9 +40,17 @@ const Library = () => {
   };
 
   const handleFilterClick = () => {
-
+    // Add filtering logic here based on documentType, year, and course
   };
 
+  useEffect(() => {
+    getDocuments();
+  }, []);
+
+  useEffect(() => {
+    // This useEffect will run after every render, including when documents state is updated
+    console.log(documents);
+  }, [documents]);
   return (
     <div className="main-body bg-[#F6F6F6] p-7">
 
@@ -41,6 +60,7 @@ const Library = () => {
           <h2 className="text-2xl font-bold mb-6">Filter</h2>
           <div className="mb-4">
             <h3 className="font-semibold">Document Type:</h3>
+            
             <label className="block">
               <input
                 type="checkbox"
@@ -135,8 +155,27 @@ const Library = () => {
             </button>
           </div>
           <div className="border-t-2 border-gray-300 my-4">
-
-            <div className="mt-6 bg-white p-4 rounded-lg shadow-md hover:scale-105 transition ease-in-out duration-300">
+            {
+              documents && documents.map((document, index) => (
+                <div className="mt-6 bg-white p-4 rounded-lg shadow-md hover:scale-105 transition ease-in-out duration-300" key={index}>
+                  <h3 className="text-xl font-semibold mb-2">{document.title}</h3>
+                  <p className="text-gray-700">
+                    <strong>Abstract:</strong> {document.abstract}
+                  </p>
+                  <div className="border-t-2 border-gray-300 my-4"></div>
+                  <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Course:</strong> BS in Computer Science</p>
+                </div>
+              ))
+            }
+            {/* <div className="mt-6 bg-white p-4 rounded-lg shadow-md hover:scale-105 transition ease-in-out duration-300">
+              <h3 className="text-xl font-semibold mb-2">Document Title</h3>
+              <p className="text-gray-700">
+                <strong>Abstract:</strong> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium harum dolor, commodi quae doloribus quam voluptas nobis quasi animi fugiat.
+              </p>
+              <div className="border-t-2 border-gray-300 my-4"></div>
+              <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Course:</strong> BS in Computer Science</p>
+            </div> */}
+            {/* <div className="mt-6 bg-white p-4 rounded-lg shadow-md hover:scale-105 transition ease-in-out duration-300">
               <h3 className="text-xl font-semibold mb-2">Document Title</h3>
               <p className="text-gray-700">
                 <strong>Abstract:</strong> This is a sample document abstract. It can contain a brief
@@ -199,7 +238,7 @@ const Library = () => {
               </p>
               <div className="border-t-2 border-gray-300 my-4"></div>
               <p className="text-gray-700"><strong>Author: </strong>John Doe<strong> Year: </strong>2023 <strong>Department: </strong> CCS <strong>Course:</strong> BS in Computer Science</p>
-            </div>
+            </div> */}
           </div>
 
         </div>
