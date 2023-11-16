@@ -24,4 +24,4 @@ class DocumentSectionSerializer(serializers.ModelSerializer):
 class DocumentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Document
-        fields = ['id', 'title', 'school_year', 'course', 'authors', 'sections', 'file']
+        fields = ['id', 'title', 'abstract', 'school_year', 'course', 'authors', 'sections', 'file']

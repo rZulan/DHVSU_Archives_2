@@ -19,16 +19,18 @@ const Submit = () => {
     abstract: "",
     file: "",
     general: "",
-    sections: [], // Error messages for each section
+    sections: [],
     newSectionTitle: "",
     newSectionContent: "",
   });
 
   const addDefaultSections = () => {
     const defaultSections = [
-      { title: "Introduction", content: "", similarityScore: 0.0 },
-      { title: "Background of the Study", content: "", similarityScore: 0.0 },
-      { title: "Statement of the Problem", content: "", similarityScore: 0.0 },
+      { title: "Chapter I", content: "Introduction... Background of the Study...", similarityScore: 0.0 },
+      { title: "Chapter II", content: "Related Literature... Related Studies...", similarityScore: 0.0 },
+      { title: "Chapter III", content: "Methodology...", similarityScore: 0.0 },
+      { title: "Chapter IV", content: "", similarityScore: 0.0 },
+      { title: "Chapter V", content: "", similarityScore: 0.0 },
     ];
     setFormData({
       ...formData,

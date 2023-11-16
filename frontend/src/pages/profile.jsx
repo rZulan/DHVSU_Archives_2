@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useState, useContext } from 'react';
+import AuthContext from '../context/AuthContext';
 
 const Profile = () => {
-  const [user, setUser] = useState({
+  let { user, logoutUser } = useContext(AuthContext)
+
+  const [user_, setUser_] = useState({
     name: 'John Doe',
     email: 'johndoe@example.com',
     bio: 'Enthusiastic learner and tech enthusiast. Passionate about new technologies and software development.',
@@ -22,14 +26,12 @@ const Profile = () => {
   const [favorites, setFavorites] = useState([]);
 
   const handleDocumentUpload = () => {
-    // Handle document upload functionality
     const newDocument = { title: newDocumentTitle, date: new Date().toLocaleDateString() };
     setUploadedDocuments([...uploadedDocuments, newDocument]);
     setNewDocumentTitle('');
   };
 
   const handleAddFavorite = (title) => {
-    // Handle adding a document to favorites
     setFavorites([...favorites, title]);
   };
 
@@ -40,18 +42,18 @@ const Profile = () => {
           <div className="md:w-1/4 p-8">
             <div className="text-center mb-6">
               <img
-                src={user.profilePic}
+                src={user_.profilePic}
                 alt="Profile"
                 className="rounded-full w-32 h-32 mb-4 mx-auto border-4 border-[#600414]"
               />
-              <h1 className="text-2xl font-semibold text-black">{user.name}</h1>
+              <h1 className="text-2xl font-semibold text-black">{user.username}</h1>
               <p className="text-black">{user.email}</p>
               <button className="bg-[#600414] hover:bg-[#ffbc2c] text-white font-semibold py-2 px-4 rounded-full my-2">
                 Edit Profile
               </button>
             </div>
             <div>
-              <p className="text-black text-sm">{user.bio}</p>
+              <p className="text-black text-sm">{user_.bio}</p>
             </div>
           </div>
           <div className="md:w-3/4 p-8">
