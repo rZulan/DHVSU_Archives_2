@@ -8,22 +8,22 @@ const Home = () => {
   const dummyFeaturedDocuments = [
     {
       title: "Title 1",
-      abstract: "Abstract: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      abstract: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       documentLink: "https://www.example.com/document1",
     },
     {
       title: "Title 2",
-      abstract: "Abstract: Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      abstract:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       documentLink: "https://www.example.com/document2",
     },
     {
       title: "Title 3",
-      abstract: "Abstract: Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      abstract:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       documentLink: "https://www.example.com/document2",
     },
     {
       title: "Title 4",
-      abstract: "Abstract: Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      abstract:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       documentLink: "https://www.example.com/document2",
     },
     // ... add more dummy documents
@@ -50,26 +50,7 @@ const Home = () => {
           abstract: 'Abstract for Document 2 in Computing Studies.',
           link: 'https://example.com/document2',
         },
-        {
-          title: 'Document 4',
-          abstract: 'Abstract for Document 2 in Computing Studies.',
-          link: 'https://example.com/document2',
-        },
-        {
-          title: 'Document 4',
-          abstract: 'Abstract for Document 2 in Computing Studies.',
-          link: 'https://example.com/document2',
-        },
-        {
-          title: 'Document 4',
-          abstract: 'Abstract for Document 2 in Computing Studies.',
-          link: 'https://example.com/document2',
-        },
-        {
-          title: 'Document 4',
-          abstract: 'Abstract for Document 2 in Computing Studies.',
-          link: 'https://example.com/document2',
-        },
+
       ],
     },
     {
@@ -85,6 +66,11 @@ const Home = () => {
           abstract: 'Abstract for Document B in Engineering and Architecture.',
           link: 'https://example.com/documentB',
         },
+        {
+          title: 'Document C',
+          abstract: 'Abstract for Document B in Engineering and Architecture.',
+          link: 'https://example.com/documentB',
+        },
       ],
     },
     {
@@ -94,6 +80,11 @@ const Home = () => {
           title: 'Document X',
           abstract: 'Abstract for Document X in Education.',
           link: 'https://example.com/documentX',
+        },
+        {
+          title: 'Document Y',
+          abstract: 'Abstract for Document Y in Education.',
+          link: 'https://example.com/documentY',
         },
         {
           title: 'Document Y',
@@ -118,16 +109,16 @@ const Home = () => {
           <div className="flex items-center mb-4">
             <input
               type="text"
-              placeholder="Search..."
-              className="border border-gray-300 rounded-md px-4 py-2 outline-none w-96"
+              placeholder="Search Document"
+              className="border border-gray-300 px-4 py-2 outline-none w-96 rounded-lg focus:outline-none focus:border-[#600414] transition duration-300 shadow-lg"
             />
-            <button className="bg-[#600414] text-white rounded-md px-4 py-2 ml-2">
+            <button className="bg-[#600414] hover:scale-110 transition ease-in-out duration-300 text-white rounded-md px-4 py-2 ml-2 shadow-lg">
               Search
             </button>
           </div>
 
           {/* Submit a document button */}
-          <button className="bg-[#600414] text-white rounded-md px-4 py-2 mb-32">
+          <button className="bg-[#600414] hover:scale-110 transition ease-in-out duration-300 text-white rounded-md px-4 py-2 mb-32 shadow-lg">
             Submit a Document
           </button>
         </div>
@@ -136,17 +127,15 @@ const Home = () => {
         <section className="mb-36">
           <h2 className="text-2xl font-bold mb-4">Recent Uploads</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="card">
-              <div className="content">
-                <p className="heading">Card Hover Effect
-                </p><p className="para">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi
-                  laboriosam at voluptas minus culpa deserunt delectus sapiente
-                  inventore pariatur
-                </p>
-                <button className="btn">Read more</button>
-              </div>
+          {dummyFeaturedDocuments.map((doc, index) => (
+            <div key={index} className="bg-white rounded-lg shadow-md p-4 mx-1 hover:scale-110 transition ease-in-out duration-300">
+              <h3><strong>{doc.title}</strong></h3>
+              <p><strong>Abstract: </strong>{doc.abstract}</p>
+              <a href={doc.documentLink} className="bg-[#fbbf24] hover:bg-[#bd8f1a] transition ease-in-out duration-300 text-white rounded px-4 py-2 block text-center mt-2">
+                View Document
+                </a>
             </div>
+          ))}
           </div>
         </section>
 
@@ -158,10 +147,10 @@ const Home = () => {
               <h1 className="text-xl font-bold mb-2">{department.name}</h1>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-9">
                 {department.documents.slice(0, maxItemsPerDepartment).map((document, docIndex) => (
-                  <div key={docIndex} className="bg-white rounded-lg shadow-md p-4">
+                  <div key={docIndex} className="bg-white rounded-lg shadow-md p-4 mx-1 hover:scale-110 transition ease-in-out duration-300">
                     <h4 className="text-lg font-bold mb-2">{document.title}</h4>
                     <p>{document.abstract}</p>
-                    <a href={document.link} className="bg-[#fbbf24] text-white rounded px-4 py-2 block text-center mt-2">
+                    <a href={document.link} className="bg-[#fbbf24] hover:bg-[#bd8f1a] transition ease-in-out duration-300 text-white rounded px-4 py-2 block text-center mt-2">
                       View Document
                     </a>
                   </div>
