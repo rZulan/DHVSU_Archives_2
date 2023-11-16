@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Navigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
-
+import logo from '../assets/logo.png';
 class Authentication extends Component {
   static contextType = AuthContext;
 
@@ -142,6 +142,10 @@ class Authentication extends Component {
     return (
       <div className="flex justify-center items-center h-screen" style={{ backgroundColor: '#F6F6F6' }}>
         <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6">
+        <div className="flex items-center justify-center mb-4">
+            <img src={logo} alt="Logo" className="w-12 h-12 mr-2" />
+            <h1 className="text-2xl font-bold" style={{ color: '#600414' }}>DHVSU ARCHIVES</h1>
+          </div>
           <h2 className="text-3xl font-bold mb-6" style={{ color: '#600414' }}>
             {this.state.isLogin ? 'Login' : 'Register'}
           </h2>
