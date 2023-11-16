@@ -11,41 +11,41 @@ const Library = () => {
   });
 
   const [year, setYear] = useState("");
+  const [department, setDepartment] = useState("");
   const [course, setCourse] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [documents, setDocuments] = useState(null);
+  const [allDocuments, setAllDocuments] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const documentsPerPage = 5;
 
-  const getDocuments = () => {
-    axios.get(`http://127.0.0.1:8000/api/documents/`)
-      .then(res => {
-        setDocuments(res.data);
-      })
-      .catch(error => {
-        console.error("Error fetching documents:", error);
-      });
+  const getDocuments = async () => {
+    try {
+      const response = await axios.get(`http://127.0.0.1:8000/api/documents/`);
+      const fetchedDocuments = response.data;
+      setDocuments(fetchedDocuments);
+      setAllDocuments(fetchedDocuments); // Update allDocuments state
+    } catch (error) {
+      console.error("Error fetching documents:", error);
+    }
   };
 
   const handleDocumentTypeChange = (event) => {
     const { name, checked } = event.target;
   
     if (name === "all" && checked) {
-      // If "All" is checked, set all other checkboxes to true
       const updatedDocumentType = Object.keys(documentType).reduce((acc, type) => {
         acc[type] = true;
         return acc;
       }, {});
       setDocumentType(updatedDocumentType);
     } else {
-      // If any other checkbox is changed, update its value
       setDocumentType((prevState) => ({
         ...prevState,
         [name]: checked,
       }));
     }
   };
-  
 
   const handleYearChange = (event) => {
     setYear(event.target.value);
@@ -55,44 +55,54 @@ const Library = () => {
     setCourse(event.target.value);
   };
 
+  const handleDepartmentChange = (event) => {
+    setDepartment(event.target.value);
+  };
+
   const handleFilterClick = () => {
-    // Filter documents based on documentType, year, and course
     let filteredDocuments = [...documents];
   
-    // Filter by documentType
     const selectedTypes = Object.keys(documentType).filter(type => documentType[type]);
     if (selectedTypes.length !== Object.keys(documentType).length) {
       filteredDocuments = filteredDocuments.filter(document => selectedTypes.includes(document.type));
     }
   
-    // Filter by year
     if (year !== "") {
       filteredDocuments = filteredDocuments.filter(document => document.year.toString() === year);
     }
   
-    // Filter by course
     if (course !== "") {
       filteredDocuments = filteredDocuments.filter(document => document.course === course);
     }
   
-    // Update the state with the filtered documents
     setDocuments(filteredDocuments);
-    // Reset pagination to the first page
     setCurrentPage(1);
   };
-  
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
 
-  useEffect(() => {
-    getDocuments();
-  }, []);
+  const handleSearchClick = () => {
+    // Use allDocuments instead of documents for filtering
+    const searchResults = allDocuments.filter(document =>
+      document.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      document.abstract.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    
+    // Update the state with the search results
+    setDocuments(searchResults);
+    setCurrentPage(1);
+  };
 
   useEffect(() => {
-    // This useEffect will run after every render, including when documents state is updated
-  }, [documents]);
+    const fetchData = async () => {
+      await getDocuments();
+    };
+
+    fetchData();
+  }, []);
+
 
   const indexOfLastDocument = currentPage * documentsPerPage;
   const indexOfFirstDocument = indexOfLastDocument - documentsPerPage;
@@ -165,6 +175,18 @@ const Library = () => {
             </select>
           </div>
           <div className="mb-4">
+            <h3 className="font-semibold">Department:</h3>
+            <select
+              value={department}
+              onChange={handleDepartmentChange}
+              className="w-full p-2 border rounded"
+            >
+              <option value="">Select Department</option>
+              <option value="Business Studies">College of Business Studies</option>
+              <option value="Computing Studies">College of Computing Studies</option>
+            </select>
+          </div>
+          <div className="mb-4">
             <h3 className="font-semibold">Course:</h3>
             <select
               value={course}
@@ -181,6 +203,7 @@ const Library = () => {
               </option>
             </select>
           </div>
+          
           <button
             onClick={handleFilterClick}
             className="w-full bg-[#600414] text-white py-3 px-6 rounded hover:bg-[#40030d] transition duration-300"
@@ -199,6 +222,7 @@ const Library = () => {
               className="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#600414] transition duration-300 shadow-lg"
             />
             <button
+              onClick={handleSearchClick}
               className="bg-[#600414] text-white py-3 px-6 ml-2 rounded hover:bg-[#40030d] transition duration-300"
             >
               Search

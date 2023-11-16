@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../css/home.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const Home = () => {
   const [brand, setBrand] = useState('Welcome DHVSU Archives');
   const [description, setDescription] = useState('Explore and submit documents');
   const [featuredDocuments, setFeaturedDocuments] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const getFeaturedDocuments = () => {
     axios
-      .get('http://127.0.0.1:8000/api/documents/') // Replace with your actual API endpoint
+      .get('http://127.0.0.1:8000/api/documents/')
       .then((res) => {
-        // Fetch only the latest 5 documents
         const latestDocuments = res.data.slice(0, 4);
         setFeaturedDocuments(latestDocuments);
       })
@@ -26,6 +28,14 @@ const Home = () => {
     getFeaturedDocuments();
   }, []);
 
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleSearchClick = () => {
+    // Navigate to the Library component with the search query
+    navigate(`/library?search=${searchQuery}`);
+  };
 
   const maxItemsPerDepartment = 6;
 
@@ -102,8 +112,25 @@ const Home = () => {
         </div>
 
         <div className="flex flex-col items-center justify-center mb-8">
-          {/* Search bar */}
-          {/* ... existing search bar code */}
+          <div className="flex items-center mb-4">
+            <input
+              type="text"
+              placeholder="Search Document"
+              value={searchQuery}
+              onChange={handleSearchChange}
+              className="border border-gray-300 px-4 py-2 outline-none w-96 rounded-lg focus:outline-none focus:border-[#600414] transition duration-300 shadow-lg"
+            />
+            <button
+              onClick={handleSearchClick}
+              className="bg-[#600414] hover:scale-110 transition ease-in-out duration-300 text-white rounded-md px-4 py-2 ml-2 shadow-lg"
+            >
+              Search
+            </button>
+          </div>
+
+          <button className="bg-[#600414] hover:scale-110 transition ease-in-out duration-300 text-white rounded-md px-4 py-2 mb-32 shadow-lg">
+            Submit a Document
+          </button>
         </div>
 
         {/* Featured Documents */}

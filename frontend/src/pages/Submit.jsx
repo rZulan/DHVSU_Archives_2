@@ -6,6 +6,9 @@ const Submit = () => {
   const [formData, setFormData] = useState({
     title: "",
     abstract: "",
+    authors: [], // Initialize as an empty array
+    course: "",
+    schoolYear: "",
     sections: [],
     file: null,
     newSectionTitle: "",
@@ -137,11 +140,15 @@ const Submit = () => {
     const dataToSubmit = {
       title: formData.title,
       abstract: formData.abstract,
+      authors: formData.authors.split(", "), // Split authors by comma
+      course: formData.course,
+      schoolYear: formData.schoolYear,
       sections: formData.sections.map((section) => ({
         section: section.title,
         content: section.content,
       })),
     };
+    
 
     console.log("Data to Submit:", dataToSubmit);
 
@@ -279,6 +286,43 @@ const Submit = () => {
             className={`mb-4 ${errors.file && "border-red-500"}`}
           />
           {errors.file && <p className="text-red-500 text-sm">{errors.file}</p>}
+
+          <label htmlFor="authors" className="block mb-2">
+            Authors (Separate with commas if multiple)
+          </label>
+          <input
+            type="text"
+            name="authors"
+            id="authors"
+            value={Array.isArray(formData.authors) ? formData.authors.join(', ') : formData.authors}
+            onChange={handleChange}
+            className={`border border-gray-400 rounded py-2 px-4 mb-4 w-full ${errors.authors && "border-red-500"}`}
+          />
+
+          <label htmlFor="course" className="block mb-2">
+            Course
+          </label>
+          <input
+            type="text"
+            name="course"
+            id="course"
+            value={formData.course}
+            onChange={handleChange}
+            className={`border border-gray-400 rounded py-2 px-4 mb-4 w-full ${errors.course && "border-red-500"}`}
+          />
+
+          <label htmlFor="schoolYear" className="block mb-2">
+            School Year
+          </label>
+          <input
+            type="text"
+            name="schoolYear"
+            id="schoolYear"
+            value={formData.schoolYear}
+            onChange={handleChange}
+            className={`border border-gray-400 rounded py-2 px-4 mb-4 w-full ${errors.schoolYear && "border-red-500"}`}
+          />
+
 
           <div className="mb-8">
             <h2 className="text-lg font-semibold mb-4">Document Sections</h2>
