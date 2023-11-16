@@ -29,11 +29,23 @@ const Library = () => {
 
   const handleDocumentTypeChange = (event) => {
     const { name, checked } = event.target;
-    setDocumentType((prevState) => ({
-      ...prevState,
-      [name]: checked,
-    }));
+  
+    if (name === "all" && checked) {
+      // If "All" is checked, set all other checkboxes to true
+      const updatedDocumentType = Object.keys(documentType).reduce((acc, type) => {
+        acc[type] = true;
+        return acc;
+      }, {});
+      setDocumentType(updatedDocumentType);
+    } else {
+      // If any other checkbox is changed, update its value
+      setDocumentType((prevState) => ({
+        ...prevState,
+        [name]: checked,
+      }));
+    }
   };
+  
 
   const handleYearChange = (event) => {
     setYear(event.target.value);
@@ -44,8 +56,31 @@ const Library = () => {
   };
 
   const handleFilterClick = () => {
-    // Add filtering logic here based on documentType, year, and course
+    // Filter documents based on documentType, year, and course
+    let filteredDocuments = [...documents];
+  
+    // Filter by documentType
+    const selectedTypes = Object.keys(documentType).filter(type => documentType[type]);
+    if (selectedTypes.length !== Object.keys(documentType).length) {
+      filteredDocuments = filteredDocuments.filter(document => selectedTypes.includes(document.type));
+    }
+  
+    // Filter by year
+    if (year !== "") {
+      filteredDocuments = filteredDocuments.filter(document => document.year.toString() === year);
+    }
+  
+    // Filter by course
+    if (course !== "") {
+      filteredDocuments = filteredDocuments.filter(document => document.course === course);
+    }
+  
+    // Update the state with the filtered documents
+    setDocuments(filteredDocuments);
+    // Reset pagination to the first page
+    setCurrentPage(1);
   };
+  
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
