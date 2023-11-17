@@ -10,6 +10,7 @@ import { AuthProvider } from './context/AuthContext';
 import Submit from './pages/Submit';
 import Profile from './pages/profile';
 import DocumentPage from './pages/Document';
+import AIDetect from './pages/ai';
 
 const isAuthenticated = false;
 const isAdmin = true;
@@ -26,6 +27,7 @@ function App() {
             <Route path='/submit' element={<Submit />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/document/:documentId' element={<DocumentPage />} />
+            <Route path='/ai' element={<AIDetect />} />
           </Route>
 
           <Route element={<PrivateRoutes />}>
