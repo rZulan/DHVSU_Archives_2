@@ -90,3 +90,6 @@ class Document(models.Model):
 
     def __str__(self):
         return self.title
+    
+class UploadedFile(models.Model):
+    file = models.FileField(upload_to='uploads/')
