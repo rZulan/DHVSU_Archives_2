@@ -26,7 +26,3 @@ class DocumentSerializer(serializers.ModelSerializer):
         model = Document
         fields = ['id', 'title', 'abstract', 'school_year', 'course', 'authors', 'sections', 'file']
         
-class UploadedFileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UploadedFile
-        fields = ('file',)
